@@ -1,0 +1,392 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Diwali Abhishek!</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: white;
+  font-family: Georgia, serif;
+  background: radial-gradient(
+    circle at top,
+    #193c62,
+    #09172e 65%,
+    #030916
+  );
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, white, transparent),
+    radial-gradient(2px 2px at 70% 20%, gold, transparent),
+    radial-gradient(2px 2px at 80% 75%, white, transparent);
+  background-size: 180px 180px;
+  opacity: .6;
+}
+
+.container {
+  width: 100%;
+  max-width: 750px;
+  margin: auto;
+  padding: 30px 18px;
+  position: relative;
+}
+
+h1 {
+  font-size: clamp(38px, 9vw, 65px);
+  color: #ffe3a0;
+  text-shadow: 0 0 25px orange;
+}
+
+h2 {
+  color: #ffdc91;
+  font-size: 30px;
+}
+
+p {
+  font-family: Arial, sans-serif;
+  line-height: 1.8;
+  color: #e4e9f4;
+}
+
+button {
+  padding: 14px 25px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(120deg, #fff0b5, #ffad35);
+  color: #341b08;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  margin: 15px;
+  box-shadow: 0 0 25px #ffb63877;
+}
+
+.scene {
+  display: none;
+  min-height: 550px;
+  padding: 35px 15px;
+  margin: 35px auto;
+  border: 1px solid #e9c77c66;
+  border-radius: 25px;
+  background: #0b1b34dd;
+  box-shadow: 0 0 35px #ffbb381a;
+  animation: appear 1s ease;
+}
+
+.scene.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* SCENE 1: GLOWING DIYA */
+
+.diya {
+  position: relative;
+  width: 190px;
+  height: 180px;
+  margin: 35px auto;
+}
+
+.flame {
+  position: absolute;
+  left: 77px;
+  top: 0;
+  width: 37px;
+  height: 70px;
+  background: radial-gradient(
+    ellipse,
+    white,
+    #ffdb50 40%,
+    #ff7924 75%,
+    transparent
+  );
+  border-radius: 70% 20% 70% 50%;
+  filter: drop-shadow(0 0 20px orange);
+  animation: flicker .8s infinite alternate;
+}
+
+.bowl {
+  position: absolute;
+  bottom: 20px;
+  width: 190px;
+  height: 75px;
+  background: linear-gradient(#ffdb83, #a84b16);
+  border-radius: 15px 15px 100px 100px;
+  box-shadow: 0 0 35px #ffae35;
+}
+
+@keyframes flicker {
+  to { transform: rotate(8deg) scale(1.12); }
+}
+
+/* SCENE 2: DECORATED DOOR */
+
+.door {
+  width: 260px;
+  height: 330px;
+  margin: 25px auto;
+  position: relative;
+  border: 10px solid #c58a3d;
+  border-bottom: 0;
+  border-radius: 140px 140px 0 0;
+  background: linear-gradient(135deg, #7c431e, #24120e);
+  box-shadow: 0 0 35px #ffb74666;
+}
+
+.door:before {
+  content: "✦";
+  position: absolute;
+  inset: 20px;
+  padding-top: 100px;
+  font-size: 50px;
+  color: gold;
+  border: 2px solid #e5b85f;
+  border-bottom: 0;
+  border-radius: 110px 110px 0 0;
+}
+
+.lights {
+  color: #ffdf83;
+  font-size: 25px;
+  letter-spacing: 9px;
+  text-shadow: 0 0 15px gold;
+  animation: flicker 1s infinite alternate;
+}
+
+/* SCENE 3: SWEETS */
+
+.plate {
+  width: 220px;
+  height: 100px;
+  border: 8px solid #e7c47a;
+  border-radius: 50%;
+  margin: 30px auto;
+  background: #8a4922;
+  box-shadow: 0 0 35px #ffbb5080;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.sweet {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, #fff2b3, #e9a63f 65%, #a85a21);
+  box-shadow: inset 0 -5px 8px #8b481b;
+}
+
+.code {
+  padding: 17px;
+  margin: 25px auto;
+  background: #061b22;
+  border: 1px solid #68d7ad;
+  border-radius: 12px;
+  color: #a5f5d5;
+  font: 13px/1.8 monospace;
+  max-width: 450px;
+}
+
+.firework {
+  position: fixed;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: gold;
+  box-shadow: 0 0 12px 4px orange;
+  pointer-events: none;
+  animation: burst 1.5s forwards;
+}
+
+@keyframes burst {
+  to {
+    opacity: 0;
+    transform: translate(var(--x), var(--y)) scale(.1);
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="container">
+
+<!-- INTRO -->
+
+<section id="intro" class="scene active">
+  <p> A SPECIAL FESTIVAL SURPRISE </p>
+
+  <h1>Happy Diwali!</h1>
+
+  <h2>Abhishek Verma</h2>
+
+  <p>
+    A little magic, a little light,
+    and a special wish for you.
+  </p>
+
+  <button onclick="showScene('scene1')">
+    Start Your Surprise
+  </button>
+</section>
+
+<!-- SCENE 1 -->
+
+<section id="scene1" class="scene">
+
+  <h2>Let Your Light Shine!</h2>
+
+  <p>A beautiful little diya to brighten your night.</p>
+
+  <div class="diya">
+    <div class="flame"></div>
+    <div class="bowl"></div>
+  </div>
+
+  <p>
+    May your life always shine with happiness,
+    peace and success.
+  </p>
+
+  <button onclick="showScene('scene2')">
+    Next Surprise
+  </button>
+
+</section>
+
+<!-- SCENE 2 -->
+
+<section id="scene2" class="scene">
+
+  <h2>Welcome to the Festival of Lights</h2>
+
+  <p>A beautiful doorway filled with festive warmth.</p>
+
+  <div class="door">
+    <div class="lights">✦ ✦ ✦</div>
+  </div>
+
+  <p>
+    May your home always be filled
+    with love and happiness.
+  </p>
+
+  <button onclick="showScene('scene3')">
+    Open One More Surprise
+  </button>
+
+</section>
+
+<!-- SCENE 3 -->
+
+<section id="scene3" class="scene">
+
+  <h2>A Sweet Surprise!</h2>
+
+  <p>A little sweetness for a wonderful celebration.</p>
+
+  <div class="plate">
+    <div class="sweet"></div>
+    <div class="sweet"></div>
+    <div class="sweet"></div>
+  </div>
+
+  <h1>Happy Diwali!</h1>
+
+  <h2>Abhishek Verma</h2>
+
+  <p>
+    May your life compile without errors,
+    your dreams run without limits,
+    and every project bring you success.
+
+    Keep coding, keep growing, and keep shining!
+  </p>
+
+  <div class="code">
+    // A special wish for Abhishek
+
+    while (life) {
+      happiness++;
+      success++;
+      keepShining();
+    }
+  </div>
+
+  <h2>Wishing You and Your Family a Wonderful Diwali!</h2>
+
+  <button onclick="showScene('intro')">
+    Watch Again
+  </button>
+
+</section>
+
+</div>
+
+<script>
+
+function showScene(id) {
+
+  document.querySelectorAll('.scene').forEach(scene => {
+    scene.classList.remove('active');
+  });
+
+  document.getElementById(id).classList.add('active');
+
+  window.scrollTo({top: 0, behavior: 'smooth'});
+
+  fireworks();
+}
+
+function fireworks() {
+
+  for (let i = 0; i < 45; i++) {
+
+    let spark = document.createElement('div');
+
+    spark.className = 'firework';
+
+    spark.style.left = Math.random() * 100 + 'vw';
+    spark.style.top = Math.random() * 75 + 'vh';
+
+    spark.style.setProperty('--x',
+      (Math.random() * 180 - 90) + 'px');
+
+    spark.style.setProperty('--y',
+      (Math.random() * 180 - 90) + 'px');
+
+    document.body.appendChild(spark);
+
+    setTimeout(() => spark.remove(), 1600);
+  }
+}
+
+</script>
+
+</body>
+  </html>
+  
