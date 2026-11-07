@@ -4,434 +4,426 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Diwali Raj Kumar Rao</title>
+<title>Happy Diwali - A Special Surprise</title>
 
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-  background: radial-gradient(ellipse at top, #243c65, #09152c 60%, #030713);
-  color: white;
-  font-family: Georgia, serif;
-  text-align: center;
-  min-height: 100vh;
-  overflow-x: hidden;
+    font-family: Georgia, serif;
+    background: #03091d;
+    color: white;
+    min-height: 100vh;
+    overflow: hidden;
 }
-
-#sky {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.light {
-  position: fixed;
-  top: -20px;
-  width: 3px;
-  height: 13px;
-  border-radius: 50%;
-  background: #ffdf8a;
-  box-shadow: 0 0 12px 3px orange;
-  animation: falling linear infinite;
-  pointer-events: none;
-}
-
-@keyframes falling {
-  to { transform: translateY(110vh) translateX(35px); opacity: 0; }
-}
-
-.cloud {
-  position: fixed;
-  top: -130px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 135px;
-  height: 65px;
-  border-radius: 60px;
-  background: linear-gradient(135deg, #fff2be, #ffc04e, #e78d20);
-  box-shadow: 0 0 35px #ffbd4b, 0 0 85px orange;
-  animation: drop 5s 1s forwards, float 3s 6s infinite ease-in-out;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.cloud:before, .cloud:after {
-  content: "";
-  position: absolute;
-  background: #ffe4a0;
-  border-radius: 50%;
-}
-.cloud:before { width: 75px; height: 75px; top: -32px; left: 12px; }
-.cloud:after { width: 65px; height: 65px; top: -24px; right: 10px; }
-
-@keyframes drop { to { top: 15%; } }
-@keyframes float {
-  50% { margin-top: -13px; }
-}
-
-.container {
-  position: relative;
-  z-index: 1;
-  width: min(720px, 94%);
-  margin: auto;
-  padding: 30px 12px;
-}
-
-.hero {
-  min-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-h1 {
-  font-size: clamp(38px, 9vw, 65px);
-  color: #ffe5a5;
-  text-shadow: 0 0 25px orange;
-  margin: 20px 0;
-}
-
-h2 {
-  color: #ffda85;
-  margin: 18px 0;
-  font-size: clamp(24px, 5vw, 36px);
-}
-
-p {
-  font: 15px/1.9 Arial, sans-serif;
-  color: #e6eaf5;
-  margin: 15px auto;
-  max-width: 540px;
-}
-
-.name {
-  font: 25px Arial, sans-serif;
-  letter-spacing: 2px;
-}
-
-button {
-  padding: 15px 26px;
-  border: 1px solid #ffe4a5;
-  border-radius: 30px;
-  background: linear-gradient(120deg, #fff0bb, #ffad36);
-  color: #39200b;
-  font-weight: bold;
-  cursor: pointer;
-  margin: 18px 5px;
-  box-shadow: 0 0 25px orange;
-}
-
-button:hover { transform: scale(1.04); }
 
 .scene {
-  display: none;
-  min-height: 520px;
-  margin: 30px 0;
-  padding: 35px 15px;
-  border: 1px solid #ffdb8666;
-  border-radius: 25px;
-  background: #0c1d38ed;
-  box-shadow: 0 0 35px #ffb53b22;
+    display: none;
+    min-height: 100vh;
+    width: 100%;
+    padding: 30px 18px;
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at center, #17295b 0%, #07112e 55%, #020719 100%);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
 }
 
 .scene.active {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  animation: appear .8s ease;
+    display: flex;
+    animation: appear 1s ease;
 }
 
 @keyframes appear {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+h1 {
+    font-size: clamp(27px, 6vw, 43px);
+    color: #fff3d0;
+    text-shadow: 0 0 18px #ffb52e;
+    margin-bottom: 15px;
+}
+
+.subtitle {
+    color: #f6dca5;
+    font-size: 15px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+button {
+    background: linear-gradient(135deg, #ffe56b, #ffae00);
+    color: #442000;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 28px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 20px #ffb900;
+    margin: 10px;
+}
+
+button:active {
+    transform: scale(.95);
 }
 
 /* DIYA */
 
 .diya {
-  position: relative;
-  width: 210px;
-  height: 200px;
-  margin: 25px auto;
-}
-
-.flame {
-  position: absolute;
-  top: 5px;
-  left: 85px;
-  width: 42px;
-  height: 85px;
-  border-radius: 70% 20% 70% 50%;
-  background: radial-gradient(ellipse, white, #ffe76b 35%, orange 75%, transparent);
-  filter: drop-shadow(0 0 20px orange);
-  animation: flicker .8s infinite alternate;
+    position: relative;
+    width: 190px;
+    height: 125px;
+    margin: 35px auto 40px;
 }
 
 .bowl {
-  position: absolute;
-  bottom: 20px;
-  width: 210px;
-  height: 80px;
-  border-radius: 15px 15px 100px 100px;
-  background: linear-gradient(#ffe3a0, #d87525, #6d2e12);
-  box-shadow: 0 0 40px orange;
+    position: absolute;
+    bottom: 0;
+    left: 5px;
+    width: 180px;
+    height: 75px;
+    background: linear-gradient(160deg, #ffdb76, #a43d08, #5e2109);
+    border-radius: 15px 15px 90px 90px;
+    border: 4px solid #e9a33b;
+    box-shadow: 0 10px 35px #ff8a00;
+}
+
+.flame {
+    position: absolute;
+    left: 77px;
+    top: -30px;
+    width: 35px;
+    height: 65px;
+    background: linear-gradient(to top, #ff6b00, #ffe600, white);
+    border-radius: 50% 50% 40% 40%;
+    transform: rotate(5deg);
+    box-shadow: 0 0 30px #ffb000;
+    animation: flicker .6s infinite alternate;
 }
 
 @keyframes flicker {
-  to { transform: rotate(7deg) scale(1.1); }
+    from { transform: scale(.9) rotate(-5deg); }
+    to { transform: scale(1.1) rotate(5deg); }
 }
 
-/* DOORWAY */
+.wick {
+    position: absolute;
+    left: 92px;
+    top: 20px;
+    width: 5px;
+    height: 25px;
+    background: #301308;
+    z-index: 2;
+}
+
+/* FLOATING LIGHTS */
+
+.particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    bottom: -20px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ffd34e;
+    box-shadow: 0 0 15px 4px #ffae00;
+    animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-110vh);
+        opacity: 0;
+    }
+}
+
+/* DECORATION SCENE */
 
 .door {
-  position: relative;
-  width: 260px;
-  height: 330px;
-  margin: 30px auto;
-  border: 11px solid #d39a4a;
-  border-bottom: 0;
-  border-radius: 140px 140px 0 0;
-  background: linear-gradient(135deg, #754322, #25140e);
-  box-shadow: 0 0 35px orange;
+    width: 220px;
+    height: 300px;
+    margin: 20px auto;
+    border: 8px solid #c58b36;
+    border-radius: 110px 110px 5px 5px;
+    background:
+      radial-gradient(circle, #ffcc63, #78340e 55%, #170c12);
+    box-shadow: 0 0 30px #ffb52e;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.door:after {
-  content: "✦";
-  position: absolute;
-  inset: 30px;
-  padding-top: 100px;
-  font-size: 55px;
-  color: gold;
-  border: 2px solid #edc16d;
-  border-bottom: 0;
-  border-radius: 110px 110px 0 0;
+.door::before {
+    content: "✦";
+    font-size: 90px;
+    color: #ffe3a0;
+    text-shadow: 0 0 25px gold;
 }
 
-.garland {
-  position: absolute;
-  top: -15px;
-  left: 5px;
-  width: 100%;
-  color: gold;
-  font-size: 25px;
-  text-shadow: 0 0 15px orange;
+.door::after {
+    content: "✦ ✦ ✦ ✦ ✦";
+    position: absolute;
+    top: -30px;
+    color: gold;
+    font-size: 22px;
+    letter-spacing: 8px;
+    white-space: nowrap;
 }
 
-/* SWEETS */
+/* SWEETS SCENE */
 
 .plate {
-  width: 230px;
-  height: 110px;
-  margin: 30px auto;
-  border: 9px solid #ffe3a1;
-  border-radius: 50%;
-  background: #9a5125;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 9px;
-  box-shadow: 0 0 35px orange;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    border: 12px solid #e8c58b;
+    background: radial-gradient(circle, #fff0c8, #d99c51);
+    box-shadow: 0 0 35px #ffb52e;
+    margin: 30px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 30px;
+    gap: 10px;
 }
 
 .sweet {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 20%, #fff3bb, #e7a43c, #a94c17);
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 25%, #fff0a1, #d77a15);
+    box-shadow: 0 0 10px #c87b18;
+    animation: bounce 2s infinite alternate;
 }
 
-.code {
-  background: #061b21;
-  color: #a9f3d3;
-  border: 1px solid #65dcb1;
-  border-radius: 12px;
-  padding: 18px;
-  margin: 25px auto;
-  max-width: 450px;
-  text-align: left;
-  font: 13px/1.8 monospace;
+.sweet:nth-child(2) {
+    background: radial-gradient(circle, #fff4d2, #bc761b);
+    animation-delay: .3s;
 }
 
-/* FIREWORKS */
-
-.spark {
-  position: fixed;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: white;
-  box-shadow: 0 0 15px 4px orange;
-  pointer-events: none;
-  animation: burst 1.5s forwards;
+.sweet:nth-child(3) {
+    background: radial-gradient(circle, #ffd66c, #9c350d);
+    animation-delay: .6s;
 }
 
-@keyframes burst {
-  to {
-    opacity: 0;
-    transform: translate(var(--x), var(--y)) scale(.1);
-  }
+.sweet:nth-child(4) {
+    background: radial-gradient(circle, #fff1c1, #d79a34);
+    animation-delay: .9s;
 }
 
-footer {
-  padding: 30px 5px;
-  color: #aabbd3;
-  font: 11px Arial;
-  letter-spacing: 2px;
+@keyframes bounce {
+    to { transform: translateY(-8px); }
+}
+
+.controls {
+    position: absolute;
+    bottom: 25px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 5;
+}
+
+.dots {
+    margin: 12px;
+    letter-spacing: 7px;
+    color: #ffdc72;
+    font-size: 18px;
+}
+
+.footer {
+    color: #c8b58b;
+    font-size: 12px;
+    margin-top: 20px;
 }
 </style>
 </head>
 
 <body>
 
-<div id="sky"></div>
-<div class="cloud"></div>
+<!-- SCENE 1 -->
 
-<div class="container">
+<section class="scene active" id="scene1">
+    <div class="particles" id="particles"></div>
 
-<section class="hero">
-  <p>A MAGICAL FESTIVAL SURPRISE</p>
-  <h1>Happy Diwali!</h1>
-  <div class="name">Raj Kumar Rao</div>
-  <p>
-    A magical night, beautiful lights,
-    and a special wish made just for you.
-  </p>
-  <button onclick="showScene('diya')">
-    Open Your Surprise
-  </button>
+    <h1>Every Little Light<br>Makes A Difference.</h1>
+
+    <p class="subtitle">
+        Let's begin this Diwali by lighting a diya
+        and spreading happiness.
+    </p>
+
+    <div class="diya">
+        <div class="flame"></div>
+        <div class="wick"></div>
+        <div class="bowl"></div>
+    </div>
+
+    <button onclick="nextScene()">
+        Light My Diya
+    </button>
+
+    <p class="footer">A festival of lights, love and happiness.</p>
 </section>
 
-<section id="diya" class="scene">
-  <h2>Let Your Light Shine!</h2>
-  <p>May your life shine brighter with every passing day.</p>
-  <div class="diya">
-    <div class="flame"></div>
-    <div class="bowl"></div>
-  </div>
-  <p>May happiness, peace and success always find you.</p>
-  <button onclick="showScene('door')">Next Surprise</button>
+
+<!-- SCENE 2 -->
+
+<section class="scene" id="scene2">
+    <div class="particles" id="particles2"></div>
+
+    <h1>Decorate Your<br>Diwali Corner</h1>
+
+    <p class="subtitle">
+        Every corner deserves a little sparkle.
+        Let your home shine with happiness.
+    </p>
+
+    <div class="door">
+    </div>
+
+    <p class="subtitle">
+        May your home always glow with joy!
+    </p>
+
+    <button onclick="nextScene()">
+        Continue
+    </button>
 </section>
 
-<section id="door" class="scene">
-  <h2>A Beautiful Diwali Welcome</h2>
-  <p>May your home always be filled with warmth and joy.</p>
-  <div class="door">
-    <div class="garland">✦ ✧ ✦ ✧ ✦</div>
-  </div>
-  <p>May every new beginning bring wonderful opportunities.</p>
-  <button onclick="showScene('sweets')">Open Sweet Surprise</button>
+
+<!-- SCENE 3 -->
+
+<section class="scene" id="scene3">
+    <div class="particles" id="particles3"></div>
+
+    <h1>Diwali Is Incomplete<br>Without Something Sweet!</h1>
+
+    <p class="subtitle">
+        Sweet moments, beautiful memories
+        and endless happiness.
+    </p>
+
+    <div class="plate">
+        <div class="sweet"></div>
+        <div class="sweet"></div>
+        <div class="sweet"></div>
+        <div class="sweet"></div>
+    </div>
+
+    <h1>Happy Diwali!</h1>
+
+    <p class="subtitle">
+        May your life shine brighter
+        than a thousand lights.
+    </p>
+
+    <button onclick="restart()">
+        Celebrate Again
+    </button>
 </section>
 
-<section id="sweets" class="scene">
-  <h2>A Sweet Surprise!</h2>
-  <p>Every celebration becomes sweeter with happiness.</p>
 
-  <div class="plate">
-    <div class="sweet"></div>
-    <div class="sweet"></div>
-    <div class="sweet"></div>
-  </div>
+<!-- NAVIGATION -->
 
-  <h1>Happy Diwali!</h1>
-  <div class="name">Raj Kumar Rao</div>
-
-  <p>
-    May your dreams become reality,
-    your hard work bring success,
-    and your future shine with endless possibilities.
-  </p>
-
-  <div class="code">
-// Special wish for Raj Kumar Rao
-
-while (life) {
-  happiness++;
-  success++;
-  keepShining();
-}
-
-// Happy Diwali!
-  </div>
-
-  <h2>Keep Smiling. Keep Growing. Keep Shining!</h2>
-  <p>
-    Wishing you and your family a beautiful
-    Diwali filled with love, peace and prosperity.
-  </p>
-
-  <button onclick="showScene('diya')">Watch Again</button>
-</section>
-
-<footer>
-  MADE WITH WARM WISHES & CODE
-  <br><br>
-  ESPECIALLY FOR RAJ KUMAR RAO
-</footer>
-
+<div class="controls">
+    <button onclick="previousScene()">Back</button>
+    <span class="dots" id="dots">● ○ ○</span>
 </div>
 
+
 <script>
-// Create stars
-const sky = document.getElementById("sky");
 
-for (let i = 0; i < 100; i++) {
-  const star = document.createElement("span");
-  star.style.cssText = `
-    position:absolute;
-    left:${Math.random()*100}%;
-    top:${Math.random()*100}%;
-    width:2px;
-    height:2px;
-    background:white;
-    border-radius:50%;
-    box-shadow:0 0 8px white;
-    opacity:${Math.random()};
-  `;
-  sky.appendChild(star);
+let currentScene = 1;
+const totalScenes = 3;
+
+function showScene(number) {
+
+    currentScene = number;
+
+    for (let i = 1; i <= totalScenes; i++) {
+        document.getElementById("scene" + i)
+            .classList.remove("active");
+    }
+
+    document.getElementById("scene" + number)
+        .classList.add("active");
+
+    let dots = "";
+
+    for (let i = 1; i <= totalScenes; i++) {
+        dots += i === number ? "● " : "○ ";
+    }
+
+    document.getElementById("dots").innerText = dots;
 }
 
-// Create falling golden lights
-for (let i = 0; i < 70; i++) {
-  const light = document.createElement("div");
-  light.className = "light";
-  light.style.left = Math.random()*100 + "vw";
-  light.style.animationDuration = (3 + Math.random()*6) + "s";
-  light.style.animationDelay = (-Math.random()*8) + "s";
-  document.body.appendChild(light);
+function nextScene() {
+    if (currentScene < totalScenes) {
+        showScene(currentScene + 1);
+    }
 }
 
-// Scene transitions
-function showScene(id) {
-  document.querySelectorAll(".scene").forEach(s => {
-    s.classList.remove("active");
-  });
-
-  document.getElementById(id).classList.add("active");
-
-  window.scrollTo({top:0, behavior:"smooth"});
-  fireworks();
+function previousScene() {
+    if (currentScene > 1) {
+        showScene(currentScene - 1);
+    }
 }
 
-// Fireworks
-function fireworks() {
-  for (let i = 0; i < 50; i++) {
-    const spark = document.createElement("span");
-    spark.className = "spark";
-    spark.style.left = Math.random()*100 + "vw";
-    spark.style.top = Math.random()*70 + "vh";
-
-    spark.style.setProperty("--x",
-      (Math.random()*200-100)+"px");
-    spark.style.setProperty("--y",
-      (Math.random()*200-100)+"px");
-
-    document.body.appendChild(spark);
-    setTimeout(() => spark.remove(), 1600);
-  }
+function restart() {
+    showScene(1);
 }
+
+
+// CREATE FLOATING GOLDEN LIGHTS
+
+function createParticles(containerId) {
+
+    const container = document.getElementById(containerId);
+
+    for (let i = 0; i < 30; i++) {
+
+        const particle = document.createElement("div");
+
+        particle.className = "particle";
+
+        particle.style.left = Math.random() * 100 + "%";
+
+        particle.style.animationDuration =
+            (4 + Math.random() * 7) + "s";
+
+        particle.style.animationDelay =
+            Math.random() * 6 + "s";
+
+        particle.style.opacity =
+            0.3 + Math.random() * 0.7;
+
+        container.appendChild(particle);
+    }
+}
+
+createParticles("particles");
+createParticles("particles2");
+createParticles("particles3");
+
 </script>
 
 </body>
