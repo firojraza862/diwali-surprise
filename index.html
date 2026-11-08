@@ -4,425 +4,703 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Diwali - A Special Surprise</title>
+<title>Happy Diwali - Our Tuition Family</title>
 
 <style>
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Georgia, serif;
-    background: #03091d;
-    color: white;
-    min-height: 100vh;
-    overflow: hidden;
+  background: #100506;
+  color: white;
+  font-family: Georgia, serif;
+  overflow: hidden;
 }
 
-.scene {
-    display: none;
-    min-height: 100vh;
-    width: 100%;
-    padding: 30px 18px;
-    position: relative;
-    overflow: hidden;
-    background:
-      radial-gradient(ellipse at center, #17295b 0%, #07112e 55%, #020719 100%);
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
+.screen {
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
 }
 
-.scene.active {
-    display: flex;
-    animation: appear 1s ease;
-}
+/* FIRST SCREEN */
 
-@keyframes appear {
-    from { opacity: 0; }
-    to { opacity: 1; }
+#intro {
+  background:
+    radial-gradient(circle at center, #6b2b0b, #140505 75%);
 }
 
 h1 {
-    font-size: clamp(27px, 6vw, 43px);
-    color: #fff3d0;
-    text-shadow: 0 0 18px #ffb52e;
-    margin-bottom: 15px;
+  color: #ffdf8c;
+  font-size: clamp(32px, 8vw, 55px);
+  text-shadow: 0 0 25px #ff9d24;
 }
 
 .subtitle {
-    color: #f6dca5;
-    font-size: 15px;
-    margin-bottom: 30px;
-    line-height: 1.6;
+  color: #ffe5a9;
+  letter-spacing: 3px;
+  margin: 16px;
 }
 
-button {
-    background: linear-gradient(135deg, #ffe56b, #ffae00);
-    color: #442000;
-    border: none;
-    border-radius: 30px;
-    padding: 14px 28px;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 0 20px #ffb900;
-    margin: 10px;
+.door-area {
+  display: flex;
+  width: 300px;
+  height: 390px;
+  perspective: 1200px;
+  border: 7px solid #dca747;
+  padding: 8px;
+  background: #54200c;
+  box-shadow: 0 0 50px #ffae32;
 }
-
-button:active {
-    transform: scale(.95);
-}
-
-/* DIYA */
-
-.diya {
-    position: relative;
-    width: 190px;
-    height: 125px;
-    margin: 35px auto 40px;
-}
-
-.bowl {
-    position: absolute;
-    bottom: 0;
-    left: 5px;
-    width: 180px;
-    height: 75px;
-    background: linear-gradient(160deg, #ffdb76, #a43d08, #5e2109);
-    border-radius: 15px 15px 90px 90px;
-    border: 4px solid #e9a33b;
-    box-shadow: 0 10px 35px #ff8a00;
-}
-
-.flame {
-    position: absolute;
-    left: 77px;
-    top: -30px;
-    width: 35px;
-    height: 65px;
-    background: linear-gradient(to top, #ff6b00, #ffe600, white);
-    border-radius: 50% 50% 40% 40%;
-    transform: rotate(5deg);
-    box-shadow: 0 0 30px #ffb000;
-    animation: flicker .6s infinite alternate;
-}
-
-@keyframes flicker {
-    from { transform: scale(.9) rotate(-5deg); }
-    to { transform: scale(1.1) rotate(5deg); }
-}
-
-.wick {
-    position: absolute;
-    left: 92px;
-    top: 20px;
-    width: 5px;
-    height: 25px;
-    background: #301308;
-    z-index: 2;
-}
-
-/* FLOATING LIGHTS */
-
-.particles {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-.particle {
-    position: absolute;
-    bottom: -20px;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #ffd34e;
-    box-shadow: 0 0 15px 4px #ffae00;
-    animation: floatUp linear infinite;
-}
-
-@keyframes floatUp {
-    to {
-        transform: translateY(-110vh);
-        opacity: 0;
-    }
-}
-
-/* DECORATION SCENE */
 
 .door {
-    width: 220px;
-    height: 300px;
-    margin: 20px auto;
-    border: 8px solid #c58b36;
-    border-radius: 110px 110px 5px 5px;
-    background:
-      radial-gradient(circle, #ffcc63, #78340e 55%, #170c12);
-    box-shadow: 0 0 30px #ffb52e;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg, #3c1106, #844017, #491605
+  );
+  border: 3px solid #e9bd67;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 35px;
+  color: gold;
+  transform-style: preserve-3d;
+  transition: transform 2s ease-in-out;
+  cursor: pointer;
+  box-shadow: inset 0 0 25px #190500;
+}
+
+.door.left {
+  transform-origin: left;
+}
+
+.door.right {
+  transform-origin: right;
+}
+
+.door.left.open {
+  transform: rotateY(-110deg);
+}
+
+.door.right.open {
+  transform: rotateY(110deg);
 }
 
 .door::before {
-    content: "✦";
-    font-size: 90px;
-    color: #ffe3a0;
-    text-shadow: 0 0 25px gold;
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 2px solid #d9aa52;
 }
 
-.door::after {
-    content: "✦ ✦ ✦ ✦ ✦";
-    position: absolute;
-    top: -30px;
-    color: gold;
-    font-size: 22px;
-    letter-spacing: 8px;
-    white-space: nowrap;
+.handle {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  background: gold;
+  border-radius: 50%;
+  box-shadow: 0 0 12px gold;
 }
 
-/* SWEETS SCENE */
-
-.plate {
-    width: 240px;
-    height: 240px;
-    border-radius: 50%;
-    border: 12px solid #e8c58b;
-    background: radial-gradient(circle, #fff0c8, #d99c51);
-    box-shadow: 0 0 35px #ffb52e;
-    margin: 30px auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 30px;
-    gap: 10px;
+.left .handle {
+  right: 8px;
 }
 
-.sweet {
-    width: 58px;
-    height: 58px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 25%, #fff0a1, #d77a15);
-    box-shadow: 0 0 10px #c87b18;
-    animation: bounce 2s infinite alternate;
+.right .handle {
+  left: 8px;
 }
 
-.sweet:nth-child(2) {
-    background: radial-gradient(circle, #fff4d2, #bc761b);
-    animation-delay: .3s;
+.hint {
+  color: #ffda8c;
+  margin: 22px;
 }
 
-.sweet:nth-child(3) {
-    background: radial-gradient(circle, #ffd66c, #9c350d);
-    animation-delay: .6s;
+/* MAIN CELEBRATION */
+
+#celebration {
+  display: none;
+  background:
+    radial-gradient(circle at center, #72280a, #160407);
+  transition: background 2s;
 }
 
-.sweet:nth-child(4) {
-    background: radial-gradient(circle, #fff1c1, #d79a34);
-    animation-delay: .9s;
+#celebration.active {
+  background:
+    radial-gradient(circle at center, #c16b10, #370807);
 }
 
-@keyframes bounce {
-    to { transform: translateY(-8px); }
+.content {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 600px;
 }
 
-.controls {
-    position: absolute;
-    bottom: 25px;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    z-index: 5;
+.group {
+  color: #ffcf69;
+  font-size: 19px;
+  letter-spacing: 3px;
+  margin: 15px;
 }
 
-.dots {
-    margin: 12px;
-    letter-spacing: 7px;
-    color: #ffdc72;
-    font-size: 18px;
+.garland {
+  position: absolute;
+  top: 12px;
+  width: 100%;
+  font-size: 24px;
+  letter-spacing: 7px;
+  filter: brightness(.4);
+  transition: 1s;
 }
 
-.footer {
-    color: #c8b58b;
-    font-size: 12px;
-    margin-top: 20px;
+.active .garland {
+  filter: brightness(2);
+  text-shadow: 0 0 20px gold;
+}
+
+.message {
+  color: #fff0d0;
+  font-size: 17px;
+  line-height: 1.7;
+  margin: 15px auto;
+}
+
+.diyas {
+  font-size: 45px;
+  margin: 15px;
+  filter: brightness(.3);
+  transition: 1s;
+}
+
+.active .diyas {
+  filter: brightness(1.8);
+  animation: glow 1s infinite alternate;
+}
+
+@keyframes glow {
+  to { transform: scale(1.12); }
+}
+
+.rangoli {
+  width: 85px;
+  height: 85px;
+  border: 5px dashed gold;
+  border-radius: 50%;
+  margin: 12px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 45px;
+  box-shadow: 0 0 25px orange;
+  animation: rotate 15s linear infinite;
+}
+
+@keyframes rotate {
+  to { transform: rotate(360deg); }
+}
+
+.cloud {
+  position: absolute;
+  width: 250px;
+  height: 110px;
+  background: #ff9d20;
+  filter: blur(55px);
+  border-radius: 50%;
+  opacity: 0;
+  transition: 2s;
+}
+
+.active .cloud {
+  opacity: .8;
+}
+
+button {
+  background: linear-gradient(45deg, #a94c08, #ffe28a);
+  color: #321000;
+  border: 2px solid #ffdf8c;
+  padding: 14px 25px;
+  margin: 8px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 15px orange;
+}
+
+button:active {
+  transform: scale(.94);
+}
+
+.signature {
+  color: #ffdf8c;
+  font-style: italic;
+  margin-top: 12px;
+}
+
+#status {
+  color: #ffe5a9;
+  font-size: 14px;
+  margin: 12px;
+}
+
+#fireworks {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media(max-height: 700px) {
+  .door-area {
+    height: 280px;
+    width: 220px;
+  }
+
+  .message {
+    font-size: 14px;
+    margin: 8px auto;
+  }
+
+  .rangoli {
+    width: 60px;
+    height: 60px;
+    font-size: 32px;
+  }
+
+  .diyas {
+    font-size: 32px;
+    margin: 5px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- SCENE 1 -->
+<!-- INTRO -->
 
-<section class="scene active" id="scene1">
-    <div class="particles" id="particles"></div>
+<section class="screen" id="intro">
 
-    <h1>Every Little Light<br>Makes A Difference.</h1>
+  <h1>HAPPY DIWALI</h1>
 
-    <p class="subtitle">
-        Let's begin this Diwali by lighting a diya
-        and spreading happiness.
-    </p>
+  <p class="subtitle">
+    A SPECIAL SURPRISE FOR YOU
+  </p>
 
-    <div class="diya">
-        <div class="flame"></div>
-        <div class="wick"></div>
-        <div class="bowl"></div>
+  <div class="door-area">
+
+    <div class="door left" id="leftDoor"
+         onclick="openDoor()">
+      <span class="handle"></span>
     </div>
 
-    <button onclick="nextScene()">
-        Light My Diya
-    </button>
+    <div class="door right" id="rightDoor"
+         onclick="openDoor()">
+      <span class="handle"></span>
+    </div>
 
-    <p class="footer">A festival of lights, love and happiness.</p>
+  </div>
+
+  <p class="hint">
+    TOUCH THE DOOR TO OPEN
+  </p>
+
+  <p style="color:#ffdc8a">
+    Made with love for Our Tuition Family
+  </p>
+
 </section>
 
 
-<!-- SCENE 2 -->
+<!-- CELEBRATION -->
 
-<section class="scene" id="scene2">
-    <div class="particles" id="particles2"></div>
+<section class="screen" id="celebration">
 
-    <h1>Decorate Your<br>Diwali Corner</h1>
+  <canvas id="fireworks"></canvas>
 
-    <p class="subtitle">
-        Every corner deserves a little sparkle.
-        Let your home shine with happiness.
+  <div class="cloud"></div>
+
+  <div class="garland">
+    ✨ 🪔 ✨ 🪔 ✨ 🪔 ✨
+  </div>
+
+  <div class="content">
+
+    <h1>HAPPY DIWALI!</h1>
+
+    <p class="group">
+      OUR TUITION FAMILY
     </p>
 
-    <div class="door">
+    <div class="rangoli">✿</div>
+
+    <div class="diyas">
+      🪔 🪔 🪔 🪔
     </div>
 
-    <p class="subtitle">
-        May your home always glow with joy!
+    <p class="message">
+      To our respected teachers and
+      wonderful classmates,
+
+      <br><br>
+
+      May this Diwali fill every heart
+      with happiness, every home with
+      warmth, and every future with success.
+
+      <br><br>
+
+      May our friendship grow stronger,
+      our dreams shine brighter,
+      and our tuition family always
+      stay united.
+
+      <br><br>
+
+      Wishing everyone a sparkling
+      and unforgettable Diwali!
     </p>
 
-    <button onclick="nextScene()">
-        Continue
+    <button id="lightButton" onclick="toggleLights()">
+      TURN ON GOLDEN LIGHTS
     </button>
-</section>
 
+    <br>
 
-<!-- SCENE 3 -->
-
-<section class="scene" id="scene3">
-    <div class="particles" id="particles3"></div>
-
-    <h1>Diwali Is Incomplete<br>Without Something Sweet!</h1>
-
-    <p class="subtitle">
-        Sweet moments, beautiful memories
-        and endless happiness.
-    </p>
-
-    <div class="plate">
-        <div class="sweet"></div>
-        <div class="sweet"></div>
-        <div class="sweet"></div>
-        <div class="sweet"></div>
-    </div>
-
-    <h1>Happy Diwali!</h1>
-
-    <p class="subtitle">
-        May your life shine brighter
-        than a thousand lights.
-    </p>
-
-    <button onclick="restart()">
-        Celebrate Again
+    <button id="musicButton" onclick="toggleMusic()">
+      PLAY FESTIVE MUSIC
     </button>
+
+    <p id="status">
+      Touch the lights to reveal the magic!
+    </p>
+
+    <p class="signature">
+      With love, From Your Tuition Friend
+    </p>
+
+  </div>
+
 </section>
-
-
-<!-- NAVIGATION -->
-
-<div class="controls">
-    <button onclick="previousScene()">Back</button>
-    <span class="dots" id="dots">● ○ ○</span>
-</div>
 
 
 <script>
 
-let currentScene = 1;
-const totalScenes = 3;
+/* AUDIO */
 
-function showScene(number) {
+let audio = null;
+let musicTimer = null;
+let musicPlaying = false;
 
-    currentScene = number;
+function getAudio() {
 
-    for (let i = 1; i <= totalScenes; i++) {
-        document.getElementById("scene" + i)
-            .classList.remove("active");
-    }
+  if (!audio) {
+    audio = new (
+      window.AudioContext ||
+      window.webkitAudioContext
+    )();
+  }
 
-    document.getElementById("scene" + number)
-        .classList.add("active");
+  if (audio.state === "suspended") {
+    audio.resume();
+  }
 
-    let dots = "";
-
-    for (let i = 1; i <= totalScenes; i++) {
-        dots += i === number ? "● " : "○ ";
-    }
-
-    document.getElementById("dots").innerText = dots;
 }
 
-function nextScene() {
-    if (currentScene < totalScenes) {
-        showScene(currentScene + 1);
+function tone(freq, duration, volume = .1, type = "sine") {
+
+  getAudio();
+
+  const osc = audio.createOscillator();
+  const gain = audio.createGain();
+
+  osc.type = type;
+  osc.frequency.value = freq;
+
+  gain.gain.setValueAtTime(volume, audio.currentTime);
+  gain.gain.exponentialRampToValueAtTime(
+    .001, audio.currentTime + duration
+  );
+
+  osc.connect(gain);
+  gain.connect(audio.destination);
+
+  osc.start();
+  osc.stop(audio.currentTime + duration);
+
+}
+
+
+/* DOOR SOUND */
+
+function doorSound() {
+
+  getAudio();
+
+  const osc = audio.createOscillator();
+  const gain = audio.createGain();
+
+  osc.type = "sawtooth";
+
+  osc.frequency.setValueAtTime(180, audio.currentTime);
+  osc.frequency.exponentialRampToValueAtTime(
+    50, audio.currentTime + 1.4
+  );
+
+  gain.gain.setValueAtTime(.09, audio.currentTime);
+  gain.gain.exponentialRampToValueAtTime(
+    .001, audio.currentTime + 1.4
+  );
+
+  osc.connect(gain);
+  gain.connect(audio.destination);
+
+  osc.start();
+  osc.stop(audio.currentTime + 1.4);
+
+}
+
+
+/* OPEN DOUBLE DOOR */
+
+let opened = false;
+
+function openDoor() {
+
+  if (opened) return;
+
+  opened = true;
+
+  getAudio();
+
+  document.getElementById("leftDoor").classList.add("open");
+  document.getElementById("rightDoor").classList.add("open");
+
+  doorSound();
+
+  setTimeout(() => tone(880, .5, .12), 1000);
+
+  setTimeout(() => {
+
+    document.getElementById("intro").style.display = "none";
+
+    document.getElementById("celebration").style.display = "flex";
+
+    startFireworks();
+
+    tone(1046, .6, .13);
+
+  }, 2000);
+
+}
+
+
+/* LIGHT SWITCH */
+
+let lightsOn = false;
+
+function toggleLights() {
+
+  lightsOn = !lightsOn;
+
+  const scene = document.getElementById("celebration");
+
+  scene.classList.toggle("active", lightsOn);
+
+  document.getElementById("lightButton").innerText =
+    lightsOn ? "TURN OFF LIGHTS" : "TURN ON GOLDEN LIGHTS";
+
+  document.getElementById("status").innerText =
+    lightsOn
+    ? "Our Tuition Family is shining together!"
+    : "The lights are turned off.";
+
+  tone(lightsOn ? 784 : 392, .5, .15);
+
+  if (lightsOn) {
+    setTimeout(() => tone(1046, .5, .1), 200);
+  }
+
+}
+
+
+/* FESTIVE ORIGINAL MUSIC */
+
+const notes = [
+  523,659,784,1046,
+  784,659,587,698,
+  880,1046,880,784,
+  659,784,523,659,
+  784,880,1046,1174,
+  1046,880,784,659
+];
+
+function toggleMusic() {
+
+  if (musicPlaying) {
+
+    clearInterval(musicTimer);
+
+    musicPlaying = false;
+
+    document.getElementById("musicButton").innerText =
+      "PLAY FESTIVE MUSIC";
+
+    return;
+
+  }
+
+  getAudio();
+
+  musicPlaying = true;
+
+  let i = 0;
+
+  document.getElementById("musicButton").innerText =
+    "STOP MUSIC";
+
+  musicTimer = setInterval(() => {
+
+    tone(notes[i], .32, .07);
+
+    i = (i + 1) % notes.length;
+
+  }, 350);
+
+}
+
+
+/* FIREWORKS */
+
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+
+let particles = [];
+
+function resizeCanvas() {
+
+  const ratio = window.devicePixelRatio || 1;
+
+  canvas.width = innerWidth * ratio;
+  canvas.height = innerHeight * ratio;
+
+  canvas.style.width = innerWidth + "px";
+  canvas.style.height = innerHeight + "px";
+
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+}
+
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
+
+
+function createFirework() {
+
+  const x = Math.random() * innerWidth;
+  const y = Math.random() * innerHeight * .55;
+
+  const colors = [
+    "#ffd700",
+    "#ff5722",
+    "#ff4081",
+    "#ffffff",
+    "#00e5ff",
+    "#aaff00"
+  ];
+
+  const color = colors[
+    Math.floor(Math.random() * colors.length)
+  ];
+
+  for (let i = 0; i < 55; i++) {
+
+    const angle = Math.PI * 2 * i / 55;
+    const speed = 1 + Math.random() * 4;
+
+    particles.push({
+
+      x: x,
+      y: y,
+
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+
+      life: 65,
+      color: color
+
+    });
+
+  }
+
+}
+
+
+function animateFireworks() {
+
+  ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+  for (let i = particles.length - 1; i >= 0; i--) {
+
+    const p = particles[i];
+
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += .025;
+    p.life--;
+
+    ctx.globalAlpha = p.life / 65;
+    ctx.fillStyle = p.color;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 2.5, 0, Math.PI * 2);
+    ctx.fill();
+
+    if (p.life <= 0) {
+      particles.splice(i, 1);
     }
+
+  }
+
+  ctx.globalAlpha = 1;
+
+  requestAnimationFrame(animateFireworks);
+
 }
 
-function previousScene() {
-    if (currentScene > 1) {
-        showScene(currentScene - 1);
+animateFireworks();
+
+let fireworksTimer;
+
+function startFireworks() {
+
+  createFirework();
+
+  fireworksTimer = setInterval(() => {
+
+    if (Math.random() > .2) {
+      createFirework();
     }
+
+  }, 850);
+
 }
-
-function restart() {
-    showScene(1);
-}
-
-
-// CREATE FLOATING GOLDEN LIGHTS
-
-function createParticles(containerId) {
-
-    const container = document.getElementById(containerId);
-
-    for (let i = 0; i < 30; i++) {
-
-        const particle = document.createElement("div");
-
-        particle.className = "particle";
-
-        particle.style.left = Math.random() * 100 + "%";
-
-        particle.style.animationDuration =
-            (4 + Math.random() * 7) + "s";
-
-        particle.style.animationDelay =
-            Math.random() * 6 + "s";
-
-        particle.style.opacity =
-            0.3 + Math.random() * 0.7;
-
-        container.appendChild(particle);
-    }
-}
-
-createParticles("particles");
-createParticles("particles2");
-createParticles("particles3");
 
 </script>
 
