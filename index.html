@@ -4,704 +4,158 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Diwali - Our Tuition Family</title>
+<title>Happy Diwali 🪔</title>
 
 <style>
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  background: #100506;
-  color: white;
-  font-family: Georgia, serif;
-  overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #19002e, #650047, #ff6a00);
+    color: white;
+    text-align: center;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
-.screen {
-  width: 100%;
-  height: 100vh;
-  min-height: 600px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  padding: 20px;
-  position: relative;
-  overflow: hidden;
-}
-
-/* FIRST SCREEN */
-
-#intro {
-  background:
-    radial-gradient(circle at center, #6b2b0b, #140505 75%);
+.container {
+    padding: 60px 20px;
 }
 
 h1 {
-  color: #ffdf8c;
-  font-size: clamp(32px, 8vw, 55px);
-  text-shadow: 0 0 25px #ff9d24;
-}
-
-.subtitle {
-  color: #ffe5a9;
-  letter-spacing: 3px;
-  margin: 16px;
-}
-
-.door-area {
-  display: flex;
-  width: 300px;
-  height: 390px;
-  perspective: 1200px;
-  border: 7px solid #dca747;
-  padding: 8px;
-  background: #54200c;
-  box-shadow: 0 0 50px #ffae32;
-}
-
-.door {
-  position: relative;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(
-    90deg, #3c1106, #844017, #491605
-  );
-  border: 3px solid #e9bd67;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 35px;
-  color: gold;
-  transform-style: preserve-3d;
-  transition: transform 2s ease-in-out;
-  cursor: pointer;
-  box-shadow: inset 0 0 25px #190500;
-}
-
-.door.left {
-  transform-origin: left;
-}
-
-.door.right {
-  transform-origin: right;
-}
-
-.door.left.open {
-  transform: rotateY(-110deg);
-}
-
-.door.right.open {
-  transform: rotateY(110deg);
-}
-
-.door::before {
-  content: "";
-  position: absolute;
-  inset: 12px;
-  border: 2px solid #d9aa52;
-}
-
-.handle {
-  position: absolute;
-  top: 50%;
-  width: 12px;
-  height: 12px;
-  background: gold;
-  border-radius: 50%;
-  box-shadow: 0 0 12px gold;
-}
-
-.left .handle {
-  right: 8px;
-}
-
-.right .handle {
-  left: 8px;
-}
-
-.hint {
-  color: #ffda8c;
-  margin: 22px;
-}
-
-/* MAIN CELEBRATION */
-
-#celebration {
-  display: none;
-  background:
-    radial-gradient(circle at center, #72280a, #160407);
-  transition: background 2s;
-}
-
-#celebration.active {
-  background:
-    radial-gradient(circle at center, #c16b10, #370807);
-}
-
-.content {
-  position: relative;
-  z-index: 5;
-  width: 100%;
-  max-width: 600px;
-}
-
-.group {
-  color: #ffcf69;
-  font-size: 19px;
-  letter-spacing: 3px;
-  margin: 15px;
-}
-
-.garland {
-  position: absolute;
-  top: 12px;
-  width: 100%;
-  font-size: 24px;
-  letter-spacing: 7px;
-  filter: brightness(.4);
-  transition: 1s;
-}
-
-.active .garland {
-  filter: brightness(2);
-  text-shadow: 0 0 20px gold;
-}
-
-.message {
-  color: #fff0d0;
-  font-size: 17px;
-  line-height: 1.7;
-  margin: 15px auto;
-}
-
-.diyas {
-  font-size: 45px;
-  margin: 15px;
-  filter: brightness(.3);
-  transition: 1s;
-}
-
-.active .diyas {
-  filter: brightness(1.8);
-  animation: glow 1s infinite alternate;
+    font-size: clamp(40px, 8vw, 65px);
+    color: #ffdf70;
+    text-shadow: 0 0 20px orange;
+    margin: 30px 0;
+    animation: glow 2s infinite alternate;
 }
 
 @keyframes glow {
-  to { transform: scale(1.12); }
+    from { text-shadow: 0 0 10px orange; }
+    to { text-shadow: 0 0 35px yellow; }
 }
 
-.rangoli {
-  width: 85px;
-  height: 85px;
-  border: 5px dashed gold;
-  border-radius: 50%;
-  margin: 12px auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 45px;
-  box-shadow: 0 0 25px orange;
-  animation: rotate 15s linear infinite;
+p {
+    font-size: 20px;
+    line-height: 1.6;
+    margin: 20px auto;
 }
 
-@keyframes rotate {
-  to { transform: rotate(360deg); }
+.diyas {
+    font-size: 65px;
+    margin: 35px;
+    animation: bounce 1.5s infinite alternate;
 }
 
-.cloud {
-  position: absolute;
-  width: 250px;
-  height: 110px;
-  background: #ff9d20;
-  filter: blur(55px);
-  border-radius: 50%;
-  opacity: 0;
-  transition: 2s;
-}
-
-.active .cloud {
-  opacity: .8;
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-15px); }
 }
 
 button {
-  background: linear-gradient(45deg, #a94c08, #ffe28a);
-  color: #321000;
-  border: 2px solid #ffdf8c;
-  padding: 14px 25px;
-  margin: 8px;
-  border-radius: 30px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 0 15px orange;
+    background: #ffcc00;
+    color: #5b0033;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: 0.3s;
 }
 
-button:active {
-  transform: scale(.94);
+button:hover {
+    background: white;
+    transform: scale(1.1);
 }
 
-.signature {
-  color: #ffdf8c;
-  font-style: italic;
-  margin-top: 12px;
+#message {
+    margin-top: 25px;
+    font-size: 24px;
+    color: #ffe88a;
 }
 
-#status {
-  color: #ffe5a9;
-  font-size: 14px;
-  margin: 12px;
+footer {
+    margin-top: 70px;
+    padding: 20px;
+    color: #ffdf70;
 }
 
-#fireworks {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
+.sparkle {
+    position: fixed;
+    pointer-events: none;
+    animation: fly 2s ease-out forwards;
 }
 
-@media(max-height: 700px) {
-  .door-area {
-    height: 280px;
-    width: 220px;
-  }
-
-  .message {
-    font-size: 14px;
-    margin: 8px auto;
-  }
-
-  .rangoli {
-    width: 60px;
-    height: 60px;
-    font-size: 32px;
-  }
-
-  .diyas {
-    font-size: 32px;
-    margin: 5px;
-  }
+@keyframes fly {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-150px) scale(0);
+        opacity: 0;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
+<div class="container">
 
-<section class="screen" id="intro">
+    <div class="diyas">🪔 🪔 🪔</div>
 
-  <h1>HAPPY DIWALI</h1>
+    <h1>Happy Diwali!</h1>
 
-  <p class="subtitle">
-    A SPECIAL SURPRISE FOR YOU
-  </p>
-
-  <div class="door-area">
-
-    <div class="door left" id="leftDoor"
-         onclick="openDoor()">
-      <span class="handle"></span>
-    </div>
-
-    <div class="door right" id="rightDoor"
-         onclick="openDoor()">
-      <span class="handle"></span>
-    </div>
-
-  </div>
-
-  <p class="hint">
-    TOUCH THE DOOR TO OPEN
-  </p>
-
-  <p style="color:#ffdc8a">
-    Made with love for Our Tuition Family
-  </p>
-
-</section>
-
-
-<!-- CELEBRATION -->
-
-<section class="screen" id="celebration">
-
-  <canvas id="fireworks"></canvas>
-
-  <div class="cloud"></div>
-
-  <div class="garland">
-    ✨ 🪔 ✨ 🪔 ✨ 🪔 ✨
-  </div>
-
-  <div class="content">
-
-    <h1>HAPPY DIWALI!</h1>
-
-    <p class="group">
-      OUR TUITION FAMILY
+    <p>
+        May your life shine like a diya,<br>
+        May your happiness sparkle like fireworks,<br>
+        And may your home be filled with love and prosperity.
     </p>
 
-    <div class="rangoli">✿</div>
+    <div class="diyas">✨ 🎆 🪔 🎆 ✨</div>
 
-    <div class="diyas">
-      🪔 🪔 🪔 🪔
-    </div>
+    <h2>Festival of Lights</h2>
 
-    <p class="message">
-      To our respected teachers and
-      wonderful classmates,
+    <p>Celebrate the joy, love and happiness of Diwali!</p>
 
-      <br><br>
-
-      May this Diwali fill every heart
-      with happiness, every home with
-      warmth, and every future with success.
-
-      <br><br>
-
-      May our friendship grow stronger,
-      our dreams shine brighter,
-      and our tuition family always
-      stay united.
-
-      <br><br>
-
-      Wishing everyone a sparkling
-      and unforgettable Diwali!
-    </p>
-
-    <button id="lightButton" onclick="toggleLights()">
-      TURN ON GOLDEN LIGHTS
+    <button onclick="celebrate()">
+        Click for Surprise 🎁
     </button>
 
-    <br>
+    <div id="message"></div>
 
-    <button id="musicButton" onclick="toggleMusic()">
-      PLAY FESTIVE MUSIC
-    </button>
+</div>
 
-    <p id="status">
-      Touch the lights to reveal the magic!
-    </p>
-
-    <p class="signature">
-      With love, From Your Tuition Friend
-    </p>
-
-  </div>
-
-</section>
-
+<footer>
+    Made with ❤️ for Diwali Celebration
+</footer>
 
 <script>
+function celebrate() {
+    document.getElementById("message").innerHTML =
+        "🎉 Wishing You and Your Family a Very Happy Diwali! 🪔";
 
-/* AUDIO */
+    for (let i = 0; i < 30; i++) {
+        let sparkle = document.createElement("div");
 
-let audio = null;
-let musicTimer = null;
-let musicPlaying = false;
+        sparkle.className = "sparkle";
+        sparkle.innerHTML = "✨";
+        sparkle.style.left = Math.random() * 100 + "vw";
+        sparkle.style.top = Math.random() * 100 + "vh";
+        sparkle.style.fontSize = "25px";
 
-function getAudio() {
+        document.body.appendChild(sparkle);
 
-  if (!audio) {
-    audio = new (
-      window.AudioContext ||
-      window.webkitAudioContext
-    )();
-  }
-
-  if (audio.state === "suspended") {
-    audio.resume();
-  }
-
-}
-
-function tone(freq, duration, volume = .1, type = "sine") {
-
-  getAudio();
-
-  const osc = audio.createOscillator();
-  const gain = audio.createGain();
-
-  osc.type = type;
-  osc.frequency.value = freq;
-
-  gain.gain.setValueAtTime(volume, audio.currentTime);
-  gain.gain.exponentialRampToValueAtTime(
-    .001, audio.currentTime + duration
-  );
-
-  osc.connect(gain);
-  gain.connect(audio.destination);
-
-  osc.start();
-  osc.stop(audio.currentTime + duration);
-
-}
-
-
-/* DOOR SOUND */
-
-function doorSound() {
-
-  getAudio();
-
-  const osc = audio.createOscillator();
-  const gain = audio.createGain();
-
-  osc.type = "sawtooth";
-
-  osc.frequency.setValueAtTime(180, audio.currentTime);
-  osc.frequency.exponentialRampToValueAtTime(
-    50, audio.currentTime + 1.4
-  );
-
-  gain.gain.setValueAtTime(.09, audio.currentTime);
-  gain.gain.exponentialRampToValueAtTime(
-    .001, audio.currentTime + 1.4
-  );
-
-  osc.connect(gain);
-  gain.connect(audio.destination);
-
-  osc.start();
-  osc.stop(audio.currentTime + 1.4);
-
-}
-
-
-/* OPEN DOUBLE DOOR */
-
-let opened = false;
-
-function openDoor() {
-
-  if (opened) return;
-
-  opened = true;
-
-  getAudio();
-
-  document.getElementById("leftDoor").classList.add("open");
-  document.getElementById("rightDoor").classList.add("open");
-
-  doorSound();
-
-  setTimeout(() => tone(880, .5, .12), 1000);
-
-  setTimeout(() => {
-
-    document.getElementById("intro").style.display = "none";
-
-    document.getElementById("celebration").style.display = "flex";
-
-    startFireworks();
-
-    tone(1046, .6, .13);
-
-  }, 2000);
-
-}
-
-
-/* LIGHT SWITCH */
-
-let lightsOn = false;
-
-function toggleLights() {
-
-  lightsOn = !lightsOn;
-
-  const scene = document.getElementById("celebration");
-
-  scene.classList.toggle("active", lightsOn);
-
-  document.getElementById("lightButton").innerText =
-    lightsOn ? "TURN OFF LIGHTS" : "TURN ON GOLDEN LIGHTS";
-
-  document.getElementById("status").innerText =
-    lightsOn
-    ? "Our Tuition Family is shining together!"
-    : "The lights are turned off.";
-
-  tone(lightsOn ? 784 : 392, .5, .15);
-
-  if (lightsOn) {
-    setTimeout(() => tone(1046, .5, .1), 200);
-  }
-
-}
-
-
-/* FESTIVE ORIGINAL MUSIC */
-
-const notes = [
-  523,659,784,1046,
-  784,659,587,698,
-  880,1046,880,784,
-  659,784,523,659,
-  784,880,1046,1174,
-  1046,880,784,659
-];
-
-function toggleMusic() {
-
-  if (musicPlaying) {
-
-    clearInterval(musicTimer);
-
-    musicPlaying = false;
-
-    document.getElementById("musicButton").innerText =
-      "PLAY FESTIVE MUSIC";
-
-    return;
-
-  }
-
-  getAudio();
-
-  musicPlaying = true;
-
-  let i = 0;
-
-  document.getElementById("musicButton").innerText =
-    "STOP MUSIC";
-
-  musicTimer = setInterval(() => {
-
-    tone(notes[i], .32, .07);
-
-    i = (i + 1) % notes.length;
-
-  }, 350);
-
-}
-
-
-/* FIREWORKS */
-
-const canvas = document.getElementById("fireworks");
-const ctx = canvas.getContext("2d");
-
-let particles = [];
-
-function resizeCanvas() {
-
-  const ratio = window.devicePixelRatio || 1;
-
-  canvas.width = innerWidth * ratio;
-  canvas.height = innerHeight * ratio;
-
-  canvas.style.width = innerWidth + "px";
-  canvas.style.height = innerHeight + "px";
-
-  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-
-}
-
-window.addEventListener("resize", resizeCanvas);
-resizeCanvas();
-
-
-function createFirework() {
-
-  const x = Math.random() * innerWidth;
-  const y = Math.random() * innerHeight * .55;
-
-  const colors = [
-    "#ffd700",
-    "#ff5722",
-    "#ff4081",
-    "#ffffff",
-    "#00e5ff",
-    "#aaff00"
-  ];
-
-  const color = colors[
-    Math.floor(Math.random() * colors.length)
-  ];
-
-  for (let i = 0; i < 55; i++) {
-
-    const angle = Math.PI * 2 * i / 55;
-    const speed = 1 + Math.random() * 4;
-
-    particles.push({
-
-      x: x,
-      y: y,
-
-      vx: Math.cos(angle) * speed,
-      vy: Math.sin(angle) * speed,
-
-      life: 65,
-      color: color
-
-    });
-
-  }
-
-}
-
-
-function animateFireworks() {
-
-  ctx.clearRect(0, 0, innerWidth, innerHeight);
-
-  for (let i = particles.length - 1; i >= 0; i--) {
-
-    const p = particles[i];
-
-    p.x += p.vx;
-    p.y += p.vy;
-    p.vy += .025;
-    p.life--;
-
-    ctx.globalAlpha = p.life / 65;
-    ctx.fillStyle = p.color;
-
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, 2.5, 0, Math.PI * 2);
-    ctx.fill();
-
-    if (p.life <= 0) {
-      particles.splice(i, 1);
+        setTimeout(() => sparkle.remove(), 2000);
     }
-
-  }
-
-  ctx.globalAlpha = 1;
-
-  requestAnimationFrame(animateFireworks);
-
 }
-
-animateFireworks();
-
-let fireworksTimer;
-
-function startFireworks() {
-
-  createFirework();
-
-  fireworksTimer = setInterval(() => {
-
-    if (Math.random() > .2) {
-      createFirework();
-    }
-
-  }, 850);
-
-}
-
 </script>
 
 </body>
