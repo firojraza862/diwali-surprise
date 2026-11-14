@@ -1,162 +1,130 @@
+"""
+Study Roadmap Planner
+Subjects: Bangla, English, Life Science, Physical Science,
+          Mathematics, History, Geography
+Run:  python study_planner.py
+"""
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Diwali 🪔</title>
+from datetime import date, datetime
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+SUBJECTS = {
+    "Bangla":           "Read the lesson, write 5 key points, practise grammar and writing.",
+    "English":          "Read aloud, learn 10 new words, practise grammar and writing.",
+    "Life Science":     "Study diagrams, make short notes, revise terms by recalling.",
+    "Physical Science": "Learn formulas and laws, then solve numericals.",
+    "Mathematics":      "Solve problems on paper every day. Do not just read solutions.",
+    "History":          "Make a timeline, note causes and effects, write short answers.",
+    "Geography":        "Practise maps, learn definitions, draw diagrams.",
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #19002e, #650047, #ff6a00);
-    color: white;
-    text-align: center;
-    min-height: 100vh;
-    overflow-x: hidden;
-}
+# Harder / practice-heavy subjects get studied earlier in the day.
+PRIORITY = ["Mathematics", "Physical Science", "Life Science",
+            "English", "Bangla", "Geography", "History"]
 
-.container {
-    padding: 60px 20px;
-}
+DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
-h1 {
-    font-size: clamp(40px, 8vw, 65px);
-    color: #ffdf70;
-    text-shadow: 0 0 20px orange;
-    margin: 30px 0;
-    animation: glow 2s infinite alternate;
-}
 
-@keyframes glow {
-    from { text-shadow: 0 0 10px orange; }
-    to { text-shadow: 0 0 35px yellow; }
-}
+def ask_float(prompt, default):
+    raw = input(f"{prompt} [{default}]: ").strip()
+    try:
+        return float(raw) if raw else default
+    except ValueError:
+        return default
 
-p {
-    font-size: 20px;
-    line-height: 1.6;
-    margin: 20px auto;
-}
 
-.diyas {
-    font-size: 65px;
-    margin: 35px;
-    animation: bounce 1.5s infinite alternate;
-}
+def pick_weak_subjects():
+    print("\nSubjects:", ", ".join(SUBJECTS))
+    raw = input("Weak subjects (comma separated, or press Enter to skip): ")
+    weak = [s.strip().lower() for s in raw.split(",") if s.strip()]
+    return [s for s in SUBJECTS if s.lower() in weak]
 
-@keyframes bounce {
-    from { transform: translateY(0); }
-    to { transform: translateY(-15px); }
-}
 
-button {
-    background: #ffcc00;
-    color: #5b0033;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 30px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 25px;
-    transition: 0.3s;
-}
+def build_week(hours_per_day, weak):
+    # Each day gets 2 subjects (1 subject if hours < 2). Weak subjects
+    # appear more often, so they are added extra times to the queue.
+    per_day = 1 if hours_per_day < 2 else 2
+    queue = list(PRIORITY) + weak  # weak subjects appear twice
+    plan, idx = {}, 0
+    for day in DAYS:
+        todays = []
+        while len(todays) < per_day:
+            subject = queue[idx % len(queue)]
+            idx += 1
+            if subject not in todays:
+                todays.append(subject)
+        plan[day] = todays
+    return plan, per_day
 
-button:hover {
-    background: white;
-    transform: scale(1.1);
-}
 
-#message {
-    margin-top: 25px;
-    font-size: 24px;
-    color: #ffe88a;
-}
+def fmt_time(minutes):
+    h, m = divmod(int(minutes), 60)
+    return f"{h:02d}:{m:02d}"
 
-footer {
-    margin-top: 70px;
-    padding: 20px;
-    color: #ffdf70;
-}
 
-.sparkle {
-    position: fixed;
-    pointer-events: none;
-    animation: fly 2s ease-out forwards;
-}
+def print_plan(plan, per_day, hours_per_day, start_hour):
+    total_min = hours_per_day * 60
+    review = 15  # nightly recap
+    block = (total_min - review) / per_day
 
-@keyframes fly {
-    0% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-150px) scale(0);
-        opacity: 0;
-    }
-}
-</style>
-</head>
+    print("\n" + "=" * 52)
+    print("           YOUR WEEKLY STUDY ROADMAP")
+    print("=" * 52)
+    for day, subjects in plan.items():
+        print(f"\n{day}")
+        t = start_hour * 60
+        for s in subjects:
+            end = t + block
+            print(f"  {fmt_time(t)}-{fmt_time(end)}  {s}")
+            print(f"      Tip: {SUBJECTS[s]}")
+            t = end
+        print(f"  {fmt_time(t)}-{fmt_time(t + review)}  Recap (close books, recall)")
+    print("\nSunday")
+    print("  Weekly review of all 7 subjects, fix weak topics, then rest.")
 
-<body>
 
-<div class="container">
+def print_rules():
+    print("\n" + "-" * 52)
+    print("HOW TO STUDY EACH BLOCK")
+    print("-" * 52)
+    print("1. Skim headings (5 min)")
+    print("2. Study actively and write short notes")
+    print("3. Take a 5-10 min break after every 40-50 min")
+    print("4. Close the book and recall what you learned")
+    print("5. Solve questions / write answers")
+    print("Sleep 7-8 hours. Keep your phone away while studying.")
 
-    <div class="diyas">🪔 🪔 🪔</div>
 
-    <h1>Happy Diwali!</h1>
+def exam_countdown():
+    raw = input("\nExam date (YYYY-MM-DD, or Enter to skip): ").strip()
+    if not raw:
+        return
+    try:
+        exam = datetime.strptime(raw, "%Y-%m-%d").date()
+    except ValueError:
+        print("Date format not understood, skipping countdown.")
+        return
+    days_left = (exam - date.today()).days
+    if days_left < 0:
+        print("That date has already passed.")
+        return
+    print(f"\n{days_left} days left (about {days_left // 7} weeks).")
+    if days_left > 30:
+        print("Phase 1: finish syllabus. Phase 2 (last 30 days): revise and "
+              "practise past papers. Last week: only revision.")
+    else:
+        print("Focus on revision and past papers. Do not start new topics.")
 
-    <p>
-        May your life shine like a diya,<br>
-        May your happiness sparkle like fireworks,<br>
-        And may your home be filled with love and prosperity.
-    </p>
 
-    <div class="diyas">✨ 🎆 🪔 🎆 ✨</div>
+def main():
+    print("STUDY ROADMAP PLANNER")
+    hours = ask_float("Study hours per day", 3.0)
+    start = ask_float("Start time (24h, e.g. 17 for 5 PM)", 17.0)
+    weak = pick_weak_subjects()
+    plan, per_day = build_week(hours, weak)
+    print_plan(plan, per_day, hours, start)
+    print_rules()
+    exam_countdown()
 
-    <h2>Festival of Lights</h2>
 
-    <p>Celebrate the joy, love and happiness of Diwali!</p>
-
-    <button onclick="celebrate()">
-        Click for Surprise 🎁
-    </button>
-
-    <div id="message"></div>
-
-</div>
-
-<footer>
-    Made with ❤️ for Diwali Celebration
-</footer>
-
-<script>
-function celebrate() {
-    document.getElementById("message").innerHTML =
-        "🎉 Wishing You and Your Family a Very Happy Diwali! 🪔";
-
-    for (let i = 0; i < 30; i++) {
-        let sparkle = document.createElement("div");
-
-        sparkle.className = "sparkle";
-        sparkle.innerHTML = "✨";
-        sparkle.style.left = Math.random() * 100 + "vw";
-        sparkle.style.top = Math.random() * 100 + "vh";
-        sparkle.style.fontSize = "25px";
-
-        document.body.appendChild(sparkle);
-
-        setTimeout(() => sparkle.remove(), 2000);
-    }
-}
-</script>
-
-</body>
-</html>
+if __name__ == "__main__":
+    main()
