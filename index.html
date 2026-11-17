@@ -4,976 +4,515 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#170d22">
-<title>For Samina — Made With Love</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<title>Happy Birthday Samina</title>
 
 <style>
-:root{
- --bg:#170d22;
- --pink:#f5a9c7;
- --rose:#d86f9b;
- --gold:#e8c783;
- --cream:#fff4e8;
- --muted:#d9c5d2;
- --panel:rgba(255,255,255,.075);
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --gold:#f5d58a;
+  --pink:#ff9ebc;
+  --dark:#170b20;
+  --purple:#321637;
 }
-*{box-sizing:border-box}
+
+*{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
- margin:0;
- background:
- radial-gradient(ellipse at 15% 10%,#48203d 0,transparent 38%),
- radial-gradient(ellipse at 85% 35%,#302044 0,transparent 42%),
- var(--bg);
- color:var(--cream);
- font-family:'DM Sans',sans-serif;
- overflow-x:hidden;
+  background:linear-gradient(145deg,#170b20,#351537,#170b20);
+  color:white;font-family:Poppins,sans-serif;
+  overflow-x:hidden;text-align:center;
 }
-button,input{font:inherit}
-button{cursor:pointer}
-#loader{
- position:fixed;inset:0;z-index:50;
- background:#170d22;
- display:grid;place-items:center;
- text-align:center;
- transition:opacity .8s,visibility .8s;
-}
-#loader.hide{opacity:0;visibility:hidden}
-.loader-heart{
- font-size:44px;color:var(--pink);
- animation:pulse 1.2s infinite;
-}
-.loader-title{
- font:38px 'Great Vibes',cursive;
- color:var(--gold);margin:12px;
-}
-.loader-sub{
- color:var(--muted);
- font-size:12px;letter-spacing:3px;
- text-transform:uppercase;
-}
-@keyframes pulse{50%{transform:scale(1.2)}}
-
-#particles{
- position:fixed;inset:0;
- pointer-events:none;overflow:hidden;z-index:1;
-}
-.particle{
- position:absolute;top:-40px;
- animation:fall linear forwards;
- opacity:.75;
-}
-@keyframes fall{
- to{transform:translateY(110vh) rotate(420deg);opacity:0}
-}
-nav{
- position:relative;z-index:5;
- display:flex;justify-content:space-between;
- align-items:center;
- padding:22px clamp(18px,6vw,80px);
- border-bottom:1px solid #ffffff18;
-}
-.brand{
- font:26px 'Great Vibes',cursive;
- color:var(--gold);
-}
-.nav-note{
- font-size:11px;letter-spacing:2px;
- text-transform:uppercase;color:var(--muted);
-}
-main{position:relative;z-index:2}
-section{
- padding:82px 20px;
- max-width:1050px;margin:auto;
-}
-.hero{
- min-height:83vh;
- display:grid;place-items:center;
- text-align:center;padding-top:70px;
-}
-.eyebrow{
- color:var(--gold);
- font-size:11px;letter-spacing:4px;
- text-transform:uppercase;
-}
-.hero h1{
- font:clamp(58px,12vw,112px)/.95 'Great Vibes',cursive;
- color:var(--pink);
- margin:24px 0 10px;
- text-shadow:0 0 35px #e879a455;
-}
-.hero h2{
- font:clamp(20px,4vw,31px) 'Cormorant Garamond',serif;
- font-weight:500;letter-spacing:3px;
-}
-.hero p{
- max-width:570px;color:var(--muted);
- line-height:1.9;margin:20px auto 30px;
-}
+button{cursor:pointer;font-family:inherit}
+section{padding:75px 18px;position:relative}
+h2{color:var(--gold);font-size:28px;margin-bottom:22px}
+p{line-height:1.8}
+.gold{color:var(--gold)}
+.script{font-family:'Great Vibes',cursive}
 .btn{
- border:1px solid #e8c78388;
- background:linear-gradient(135deg,#e8c783,#d58a9d);
- color:#281423;padding:13px 23px;
- border-radius:40px;font-weight:700;
- transition:.25s;
- box-shadow:0 10px 35px #d86f9b28;
+  border:1px solid var(--gold);background:linear-gradient(90deg,#e9b95d,#ffe6a9);
+  color:#29142c;padding:13px 22px;border-radius:30px;
+  font-weight:700;margin:7px;box-shadow:0 0 18px #e9b95d55;
 }
-.btn:hover{
- transform:translateY(-3px);
- box-shadow:0 15px 40px #d86f9b55;
+.btn:hover{transform:scale(1.05)}
+.card{
+  max-width:850px;margin:20px auto;padding:25px;
+  background:#ffffff0d;border:1px solid #f5d58a55;
+  border-radius:22px;backdrop-filter:blur(10px);
+  box-shadow:0 10px 35px #0005;
 }
-.btn.secondary{
- background:transparent;color:var(--cream);
- border-color:#ffffff55;box-shadow:none;
+#loader{
+  position:fixed;inset:0;background:#170b20;z-index:1000;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;transition:opacity 1s;
 }
-.btn.small{padding:10px 16px;font-size:12px}
-.hero-actions{
- display:flex;gap:12px;
- justify-content:center;flex-wrap:wrap;
+.loader-heart{font-size:55px;animation:pulse 1s infinite}
+@keyframes pulse{50%{transform:scale(1.3)}}
+#hero{
+  min-height:100vh;display:flex;align-items:center;
+  justify-content:center;flex-direction:column;
+  background:radial-gradient(circle at center,#67335e,#170b20 70%);
+  overflow:hidden;
 }
-.scroll-hint{
- margin-top:48px;color:#c9aebd;
- font-size:10px;letter-spacing:3px;
+.crown{font-size:40px;color:var(--gold)}
+.hero-title{font-size:clamp(45px,10vw,85px);color:var(--gold)}
+.hero-sub{font-size:18px;letter-spacing:3px;margin:12px}
+.hero-note{max-width:600px;margin:15px auto;color:#f7dce9}
+.music-panel{position:fixed;right:12px;bottom:12px;z-index:20}
+.music-panel button{display:block;margin:5px}
+.music-status{font-size:11px;color:var(--gold)}
+.countdown{
+  display:flex;justify-content:center;gap:12px;flex-wrap:wrap;
 }
-.section-head{text-align:center;margin-bottom:38px}
-.section-head .eyebrow{margin-bottom:12px}
-.section-head h2{
- font:clamp(38px,7vw,58px) 'Cormorant Garamond',serif;
- color:var(--gold);margin:0;
+.time-box{
+  min-width:75px;padding:15px 10px;background:#ffffff12;
+  border:1px solid #f5d58a77;border-radius:15px;
 }
-.section-head p{
- color:var(--muted);line-height:1.8;
- max-width:600px;margin:12px auto;
+.time-box strong{display:block;font-size:28px;color:var(--gold)}
+.time-box small{font-size:11px}
+.cake-area{margin:30px auto;max-width:360px;position:relative}
+.cake{font-size:115px;transition:1s;filter:drop-shadow(0 0 20px #ff9ebc)}
+.candle{font-size:25px;display:inline-block;animation:flicker .5s infinite alternate}
+@keyframes flicker{to{opacity:.5;transform:scale(1.1)}}
+#cakeMessage{color:var(--pink);margin-top:12px}
+.gallery{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:12px;max-width:850px;margin:20px auto;
 }
-.glass{
- background:var(--panel);
- border:1px solid #ffffff18;
- backdrop-filter:blur(14px);
- border-radius:24px;
- box-shadow:0 18px 60px #0002;
+.gallery img{
+  width:100%;height:180px;object-fit:cover;
+  border-radius:15px;border:2px solid var(--gold);
 }
-.countdown-card{
- max-width:760px;margin:auto;
- padding:30px;text-align:center;
-}
-.date-row{
- display:flex;gap:10px;
- justify-content:center;align-items:center;
- flex-wrap:wrap;margin:18px 0;
-}
-input[type=date]{
- background:#28192e;color:var(--cream);
- border:1px solid #ffffff35;
- border-radius:12px;padding:11px;
-}
-.timer{
- display:grid;grid-template-columns:repeat(4,1fr);
- gap:12px;margin-top:25px;
-}
-.timebox{
- padding:18px 8px;
- background:#ffffff0b;
- border-radius:16px;border:1px solid #ffffff12;
-}
-.timebox strong{
- display:block;
- font:clamp(27px,6vw,42px) 'Cormorant Garamond',serif;
- color:var(--gold);
-}
-.timebox span{
- font-size:10px;letter-spacing:2px;
- color:var(--muted);text-transform:uppercase;
-}
-.letter{
- max-width:780px;margin:auto;
- padding:clamp(24px,6vw,52px);
- position:relative;
-}
-.letter:before{
- content:'“';position:absolute;top:5px;left:22px;
- font:100px Georgia;color:#e8c78325;
-}
-.letter p{
- font:20px/1.9 'Cormorant Garamond',serif;
- color:#f8e9ed;margin:0 0 18px;
-}
-.signature{
- font:36px 'Great Vibes',cursive;
- color:var(--gold);text-align:right;margin-top:25px;
-}
-
-/* Birthday cake */
-.cake-area{
- display:grid;place-items:center;gap:24px;
-}
-.cake-stage{
- position:relative;width:280px;height:265px;
- display:flex;align-items:end;
- justify-content:center;padding-bottom:20px;
-}
-.plate{
- position:absolute;bottom:13px;
- width:270px;height:24px;border-radius:50%;
- background:linear-gradient(#fff1dc,#b88a83);
- box-shadow:0 8px 25px #0006;
-}
-.cake{
- position:relative;width:220px;height:160px;
- z-index:2;transition:transform 1s;
-}
-.tier{
- position:absolute;left:50%;
- transform:translateX(-50%);
- border-radius:15px 15px 10px 10px;
- background:linear-gradient(90deg,#b94e79,#f4b5c9 45%,#b94e79);
- box-shadow:inset 0 -12px 0 #9b3d69;
-}
-.tier:before{
- content:'';position:absolute;left:0;right:0;top:-9px;
- height:20px;border-radius:50%;
- background:#ffe0e4;
-}
-.tier.one{bottom:0;width:220px;height:68px}
-.tier.two{
- bottom:57px;width:170px;height:57px;
- background:linear-gradient(90deg,#c17c94,#ffe0d6 45%,#c17c94);
-}
-.tier.three{
- bottom:105px;width:118px;height:47px;
- background:linear-gradient(90deg,#d9a45f,#fff0c8 45%,#d9a45f);
-}
-.cake-decoration{
- position:absolute;z-index:4;bottom:27px;
- left:50%;transform:translateX(-50%);
- font-size:18px;letter-spacing:12px;white-space:nowrap;
-}
-.candle{
- position:absolute;z-index:5;bottom:148px;
- left:50%;transform:translateX(-50%);
- width:8px;height:38px;
- background:repeating-linear-gradient(45deg,#fff 0 5px,#d86f9b 5px 10px);
- border-radius:4px;
-}
-.flame{
- position:absolute;top:-18px;left:-3px;
- width:14px;height:19px;
- background:radial-gradient(ellipse at 50% 70%,#fff7a5 0 20%,#ff9c35 55%,transparent 70%);
- border-radius:50%;
- animation:flicker .18s infinite alternate;
- filter:drop-shadow(0 0 8px #ffb34d);
-}
-.flame.off{display:none}
-@keyframes flicker{
- to{transform:rotate(8deg) scale(.85)}
-}
-.cake.cut{transform:translateX(24px) rotate(2deg)}
-.cake-slice{
- position:absolute;right:-12px;bottom:15px;
- font-size:42px;opacity:0;
- transform:translate(0,0);
- transition:1s;z-index:6;
-}
-.cake.cut .cake-slice{
- opacity:1;transform:translate(45px,-12px) rotate(18deg);
-}
-.cake-message{
- color:var(--gold);
- font:24px 'Cormorant Garamond',serif;
- text-align:center;min-height:30px;
-}
-.controls{
- display:flex;gap:10px;
- justify-content:center;flex-wrap:wrap;
-}
-
-/* Gallery */
-.gallery-grid{
- display:grid;grid-template-columns:repeat(3,1fr);
- gap:14px;
-}
-.photo{
- min-height:170px;border-radius:18px;
- overflow:hidden;
- background:linear-gradient(135deg,#563047,#30213c);
- border:1px solid #ffffff22;
- display:grid;place-items:center;position:relative;
-}
-.photo img{
- width:100%;height:100%;
- position:absolute;inset:0;object-fit:cover;
-}
-.photo span{
- font:20px 'Cormorant Garamond',serif;
- color:#f3d8e4;z-index:0;
-}
-.upload-note{
- text-align:center;color:var(--muted);
- font-size:12px;margin-top:15px;
-}
-.memory-grid{
- display:grid;grid-template-columns:repeat(3,1fr);
- gap:14px;
-}
-.memory{padding:22px;text-align:center}
-.memory .icon{font-size:28px}
-.memory h3{
- font:24px 'Cormorant Garamond',serif;
- color:var(--gold);margin:12px 0 6px;
-}
-.memory p{
- font-size:13px;line-height:1.7;
- color:var(--muted);margin:0;
-}
-.gift-wrap{
- max-width:650px;margin:auto;
- text-align:center;padding:35px;
+.upload-label{display:inline-block}
+.letter{text-align:left;white-space:pre-line;font-size:15px;color:#ffe8f0}
+.timeline{max-width:650px;margin:auto;text-align:left}
+.timeline div{
+  border-left:2px solid var(--gold);padding:10px 20px;
+  margin:15px 0;background:#ffffff09;border-radius:0 12px 12px 0;
 }
 .gift{
- font-size:100px;display:block;
- cursor:pointer;transition:.4s;
+  font-size:75px;cursor:pointer;transition:.4s;
 }
-.gift:hover{transform:translateY(-8px) rotate(-5deg)}
-.hidden-message{
- display:none;color:var(--cream);
- font:24px/1.6 'Cormorant Garamond',serif;
- margin-top:20px;
+.gift:hover{transform:rotate(10deg) scale(1.1)}
+.hidden{display:none}
+.quiz-option{
+  display:block;width:100%;padding:12px;margin:8px 0;
+  background:#ffffff12;border:1px solid #f5d58a66;
+  border-radius:12px;color:white;
 }
-.hidden-message.show{
- display:block;animation:reveal .8s;
-}
-@keyframes reveal{
- from{opacity:0;transform:translateY(15px)}
- to{opacity:1;transform:none}
-}
-.quiz{
- max-width:600px;margin:auto;
- padding:28px;text-align:center;
-}
-.quiz h3{
- font:27px 'Cormorant Garamond',serif;
- color:var(--gold);
-}
-.quiz-options{
- display:flex;gap:10px;
- justify-content:center;flex-wrap:wrap;
-}
-.quiz-result{
- min-height:28px;color:var(--pink);margin-top:15px;
-}
-.music-panel{
- max-width:680px;margin:auto;
- padding:25px;text-align:center;
-}
-.music-panel p{
- color:var(--muted);line-height:1.7;font-size:13px;
-}
-.music-buttons{
- display:flex;gap:10px;
- justify-content:center;flex-wrap:wrap;
- margin:18px 0;
-}
-.secret{
- max-width:700px;margin:auto;
- text-align:center;padding:35px;
-}
-.secret-line{
- font:clamp(25px,5vw,38px)/1.5 'Cormorant Garamond',serif;
- color:var(--pink);min-height:100px;
-}
-footer{
- text-align:center;padding:40px 20px 55px;
- color:#bba5b5;font-size:12px;letter-spacing:1px;
-}
-footer .foot-heart{font-size:22px;color:var(--rose)}
+.quiz-option:hover{background:#7a3c69}
 #fireworks{
- position:fixed;inset:0;z-index:20;
- pointer-events:none;
+  position:fixed;inset:0;pointer-events:none;z-index:30;
 }
-@media(max-width:650px){
- section{padding:62px 17px}
- .nav-note{font-size:9px;letter-spacing:1px}
- .gallery-grid{grid-template-columns:repeat(2,1fr)}
- .photo{min-height:140px}
- .memory-grid{grid-template-columns:1fr}
- .timer{gap:7px}
- .timebox{padding:14px 4px}
- .timebox span{font-size:8px}
- .letter p{font-size:18px}
- .cake-stage{transform:scale(.9)}
+.floating{
+  position:fixed;top:-40px;z-index:5;pointer-events:none;
+  animation:fall linear forwards;
 }
-@media(prefers-reduced-motion:reduce){
- *,*:before,*:after{
-  animation-duration:.01ms!important;
-  scroll-behavior:auto!important;
-  transition-duration:.01ms!important;
- }
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}
+.balloon{
+  display:inline-block;font-size:45px;
+  animation:float 3s ease-in-out infinite;
 }
+@keyframes float{50%{transform:translateY(-18px)}}
+.secret{
+  border:1px dashed var(--gold);padding:20px;border-radius:18px;
+}
+footer{padding:35px 15px;color:#d8b9cb}
 </style>
 </head>
 
 <body>
 
 <div id="loader">
- <div class="loader-inner">
-  <div class="loader-heart">♡</div>
-  <div class="loader-title">A little world for Samina</div>
-  <div class="loader-sub">Made with love, just for you</div>
- </div>
+  <div class="loader-heart">♥</div>
+  <h2 class="script">A little surprise for Samina...</h2>
+  <p>Preparing your special day</p>
 </div>
 
-<div id="particles"></div>
 <canvas id="fireworks"></canvas>
 
-<nav>
- <div class="brand">For Samina, with love</div>
- <div class="nav-note">A little celebration of you</div>
-</nav>
-
-<main>
-
-<!-- HERO -->
-<section class="hero" id="home">
- <div>
-  <div class="eyebrow">To my wonderful sister</div>
-  <h1>Happy Birthday,<br>Samina</h1>
-  <h2>Today, the world celebrates you.</h2>
-  <p>
-   Ek special din, ek special insaan ke naam.
-   Yeh chhoti si website tumhare liye hai —
-   meri taraf se, dil se.
-  </p>
-  <div class="hero-actions">
-   <button class="btn" onclick="openSurprise()">Open Your Surprise</button>
-   <a class="btn secondary" href="#letter" style="text-decoration:none">
-    Read Your Letter
-   </a>
-  </div>
-  <div class="scroll-hint">SCROLL DOWN FOR YOUR SURPRISE ↓</div>
- </div>
-</section>
-
-<!-- COUNTDOWN -->
-<section id="countdown">
- <div class="section-head">
-  <div class="eyebrow">The special day</div>
-  <h2>Let the Celebration Begin</h2>
-  <p>Set the birthday date to see the countdown.</p>
- </div>
- <div class="countdown-card glass">
-  <label for="birthdayDate">Birthday date</label>
-  <div class="date-row">
-   <input id="birthdayDate" type="date">
-   <button class="btn small" onclick="saveDate()">Set Date</button>
-  </div>
-  <div class="timer">
-   <div class="timebox"><strong id="days">00</strong><span>Days</span></div>
-   <div class="timebox"><strong id="hours">00</strong><span>Hours</span></div>
-   <div class="timebox"><strong id="minutes">00</strong><span>Minutes</span></div>
-   <div class="timebox"><strong id="seconds">00</strong><span>Seconds</span></div>
-  </div>
-  <p id="countdownText" style="color:var(--pink)">
-   Your special moment is worth celebrating.
-  </p>
- </div>
-</section>
-
-<!-- EMOTIONAL LETTER -->
-<section id="letter">
- <div class="section-head">
-  <div class="eyebrow">A letter from the heart</div>
-  <h2>For My Dear Sister</h2>
- </div>
- <article class="letter glass">
-  <p>Dear Samina,</p>
-  <p>
-   Har kisi ki life mein kuch log aise hote hain jo bina kuch kahe
-   bhi life ko special bana dete hain. Mere liye tum unhi logon mein
-   se ek ho. Tum sirf meri sister nahi, meri life ka ek beautiful part ho.
-  </p>
-  <p>
-   Ho sakta hai main har baar words mein express na kar paun,
-   lekin tumhari happiness mere liye bahut matter karti hai.
-   Main chahta hoon ki tumhari life mein hamesha khushiyan,
-   success, peace aur endless reasons to smile rahein.
-  </p>
-  <p>
-   Jab bhi life difficult lage, yaad rakhna — tum strong ho,
-   tum important ho, aur tum bahut saari achhi cheezon ki deserving ho.
-   Apne dreams ko kabhi chhota mat samajhna.
-   Keep shining, keep growing, and always be yourself.
-  </p>
-  <p>
-   Aaj ka din tumhara hai. Enjoy every little moment,
-   laugh loudly, make beautiful memories, and never forget
-   how special you are.
-  </p>
-  <p>
-   Happy Birthday, Samina. May this new year of your life be
-   brighter, happier, and full of beautiful surprises.
-  </p>
-  <div class="signature">With lots of love ♡</div>
- </article>
-</section>
-
-<!-- CAKE -->
-<section id="cake">
- <div class="section-head">
-  <div class="eyebrow">Make a wish</div>
-  <h2>Your Birthday Cake</h2>
-  <p>Light the candle, make a wish, and let the celebration begin.</p>
- </div>
-
- <div class="cake-area">
-  <div class="cake-stage">
-   <div class="plate"></div>
-   <div class="cake" id="cakeObject">
-    <div class="tier one"></div>
-    <div class="tier two"></div>
-    <div class="tier three"></div>
-    <div class="cake-decoration">✦ • ✦ • ✦</div>
-    <div class="candle">
-     <div class="flame" id="flame"></div>
-    </div>
-    <div class="cake-slice">🍰</div>
-   </div>
-  </div>
-
-  <div class="cake-message" id="cakeMessage">
-   A sweet cake for the sweetest sister.
-  </div>
-
-  <div class="controls">
-   <button class="btn small" onclick="toggleCandle()">
-    Light / Blow Candle
-   </button>
-   <button class="btn small" onclick="cutCake()">
-    Cut the Cake
-   </button>
-   <button class="btn secondary small" onclick="celebrate()">
-    Celebrate!
-   </button>
-  </div>
- </div>
-</section>
-
-<!-- PHOTO GALLERY -->
-<section id="gallery">
- <div class="section-head">
-  <div class="eyebrow">Little moments, big memories</div>
-  <h2>Our Memory Gallery</h2>
-  <p>Add your favourite pictures here and turn this page into a memory book.</p>
- </div>
-
- <div class="gallery-grid" id="galleryGrid">
-  <div class="photo"><span>Our happy moments</span></div>
-  <div class="photo"><span>Beautiful memories</span></div>
-  <div class="photo"><span>Forever family</span></div>
- </div>
-
- <div class="upload-note">
-  <label class="btn secondary small" for="photoUpload">＋ Add Photos</label>
-  <input id="photoUpload" type="file" accept="image/*" multiple hidden onchange="addPhotos(event)">
-  <p>Photo previews last for this browser session. Keep the original photos separately.</p>
- </div>
-</section>
-
-<!-- WISHES -->
-<section id="memories">
- <div class="section-head">
-  <div class="eyebrow">A few reminders</div>
-  <h2>Things I Wish for You</h2>
- </div>
-
- <div class="memory-grid">
-  <div class="memory glass">
-   <div class="icon">✧</div>
-   <h3>Endless Happiness</h3>
-   <p>Har din tumhare liye ek nayi smile aur ek nayi reason lekar aaye.</p>
-  </div>
-  <div class="memory glass">
-   <div class="icon">♡</div>
-   <h3>Beautiful People</h3>
-   <p>Tumhare aas-paas hamesha woh log rahein jo tumhari value samjhein.</p>
-  </div>
-  <div class="memory glass">
-   <div class="icon">✦</div>
-   <h3>Dreams Come True</h3>
-   <p>Tumhare saare dreams ek-ek karke reality banein. Keep believing in yourself.</p>
-  </div>
- </div>
-</section>
-
-<!-- GIFT -->
-<section id="gift">
- <div class="section-head">
-  <div class="eyebrow">One more little surprise</div>
-  <h2>A Gift from the Heart</h2>
-  <p>Tap the gift box. Something special is waiting for you.</p>
- </div>
-
- <div class="gift-wrap glass">
-  <span class="gift" onclick="revealGift()" role="button">🎁</span>
-  <button class="btn small" onclick="revealGift()">Open Your Gift</button>
-  <div class="hidden-message" id="giftMessage">
-   Surprise! Tumhari sabse precious gift tumhari apni smile hai.
-   Please ise kabhi khona mat. You deserve a life filled with love,
-   respect, peace, and happiness. ♡
-  </div>
- </div>
-</section>
-
-<!-- QUIZ -->
-<section id="quiz">
- <div class="section-head">
-  <div class="eyebrow">A tiny sister quiz</div>
-  <h2>How Well Do You Know This Page?</h2>
- </div>
-
- <div class="quiz glass">
-  <h3>Who is today's VIP?</h3>
-  <div class="quiz-options">
-   <button class="btn small secondary" onclick="answerQuiz(false)">The Queen of Mars</button>
-   <button class="btn small" onclick="answerQuiz(true)">Samina, of course!</button>
-   <button class="btn small secondary" onclick="answerQuiz(false)">A random superstar</button>
-  </div>
-  <div class="quiz-result" id="quizResult"></div>
- </div>
-</section>
-
-<!-- MUSIC -->
-<section id="music">
- <div class="section-head">
-  <div class="eyebrow">A little soundtrack</div>
-  <h2>Music for Your Moment</h2>
-  <p>Choose a gentle melody for the celebration.</p>
- </div>
-
- <div class="music-panel glass">
-  <div class="music-buttons">
-   <button class="btn small" onclick="toggleMelody('birthday')">
-    Happy Birthday Melody
-   </button>
-   <button class="btn small secondary" onclick="toggleMelody('romantic')">
-    Soft Instrumental
-   </button>
-   <button class="btn small secondary" onclick="stopMusic()">
-    Pause Music
-   </button>
-  </div>
-
-  <a class="btn secondary small"
-   href="https://www.youtube.com/results?search_query=Arijit+Singh+romantic+songs"
-   target="_blank" rel="noopener"
-   style="display:inline-block;text-decoration:none">
-   Find Arijit Singh Songs on YouTube
+<div class="music-panel">
+  <button class="btn" onclick="playBirthday()">Birthday melody</button>
+  <button class="btn" onclick="playRomantic()">Romantic melody</button>
+  <button class="btn" onclick="stopMusic()">Pause music</button>
+  <a href="https://www.youtube.com/results?search_query=Arijit+Singh+romantic+songs"
+     target="_blank">
+    <button class="btn">Arijit Singh songs</button>
   </a>
+  <div class="music-status" id="musicStatus">Music is off</div>
+</div>
 
-  <p>
-   Original browser-generated melodies are used here.
-   Arijit Singh recordings are not included in this file.
-   Music starts only after you tap a button.
-  </p>
-  <p id="musicStatus" aria-live="polite">Music is paused.</p>
- </div>
-</section>
-
-<!-- SECRET MESSAGE -->
-<section id="secret">
- <div class="section-head">
-  <div class="eyebrow">Just one last thing</div>
-  <h2>A Secret Message</h2>
- </div>
-
- <div class="secret glass">
-  <div class="secret-line" id="secretLine">
-   Some people make a family feel more like home.
-   You are one of those people, Samina.
+<header id="hero">
+  <div class="crown">♛</div>
+  <p class="gold">A ROYAL CELEBRATION</p>
+  <h1 class="script hero-title">Happy Birthday</h1>
+  <h1 class="hero-title">SAMINA</h1>
+  <p class="hero-sub">18 NOVEMBER 2026</p>
+  <p class="hero-note">Today is not just another day. Today is a celebration of someone truly special.</p>
+  <button class="btn" onclick="document.getElementById('countdownSection').scrollIntoView()">
+    Open Your Surprise
+  </button>
+  <div style="margin-top:35px">
+    <span class="balloon">🎈</span>
+    <span class="balloon">🎀</span>
+    <span class="balloon">🎈</span>
   </div>
-  <button class="btn small" onclick="newWish()">Show Me Another Wish</button>
- </div>
+</header>
+
+<section id="countdownSection">
+  <h2>Your Special Day</h2>
+  <p>Counting every moment of this beautiful celebration.</p>
+  <div class="countdown card" id="countdown">
+    <div class="time-box"><strong id="days">00</strong><small>DAYS</small></div>
+    <div class="time-box"><strong id="hours">00</strong><small>HOURS</small></div>
+    <div class="time-box"><strong id="minutes">00</strong><small>MINUTES</small></div>
+    <div class="time-box"><strong id="seconds">00</strong><small>SECONDS</small></div>
+  </div>
+  <h2 class="script" id="countdownMessage"></h2>
 </section>
 
-</main>
+<section>
+  <h2 class="script">The Birthday Celebration</h2>
+  <div class="card">
+    <p class="gold">Make a wish, Samina!</p>
+    <div class="cake-area">
+      <div class="candle" id="candle">🕯️ 🕯️ 🕯️</div>
+      <div class="cake" id="cake">🎂</div>
+      <p id="cakeMessage">Your beautiful birthday cake is ready!</p>
+    </div>
+    <button class="btn" onclick="lightCandles()">Light the candles</button>
+    <button class="btn" onclick="cutCake()">Cut the cake</button>
+    <button class="btn" onclick="celebrate()">Celebrate!</button>
+  </div>
+</section>
+
+<section>
+  <h2>Birthday Wishes</h2>
+  <div class="card">
+    <p class="script" style="font-size:36px;color:var(--pink)">
+      May your life always shine like a thousand stars.
+    </p>
+    <p>May happiness find you, may your dreams come true, and may every new chapter bring beautiful memories.</p>
+  </div>
+</section>
+
+<section>
+  <h2>A Letter For You</h2>
+  <div class="card letter" id="letter">
+Dear Samina,
+
+Today is your special day, and I want you to know how important you are.
+
+You deserve happiness, success, peace, and all the beautiful things life can offer.
+
+May your smile never fade. May your dreams become reality. And may every year bring you more reasons to celebrate.
+
+Thank you for being a wonderful part of our lives.
+
+Keep shining, keep smiling, and always believe in yourself.
+
+Happy Birthday, Samina!
+
+With lots of love,
+Your family
+  </div>
+  <button class="btn" onclick="revealLetter()">Read your special letter</button>
+</section>
+
+<section>
+  <h2>Your Beautiful Memories</h2>
+  <p>Add your favourite pictures here.</p>
+  <div class="card">
+    <label class="btn upload-label">
+      Add photos
+      <input type="file" id="photoInput" accept="image/*" multiple hidden>
+    </label>
+    <div class="gallery" id="gallery">
+      <div class="script gold">Your memories will appear here.</div>
+    </div>
+    <p style="font-size:12px;color:#dcbccc">Photos selected here are previews in this browser. They are not uploaded to a server.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Our Memory Timeline</h2>
+  <div class="timeline">
+    <div><h3 class="gold">Beautiful beginnings</h3><p>Every special memory starts with a moment.</p></div>
+    <div><h3 class="gold">Little moments</h3><p>Small memories can become the biggest treasures.</p></div>
+    <div><h3 class="gold">Today</h3><p>Another beautiful chapter begins. Happy Birthday!</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>A Surprise Gift</h2>
+  <div class="card">
+    <div class="gift" onclick="openGift()">🎁</div>
+    <p>Tap the gift to discover your surprise.</p>
+    <h2 class="script hidden" id="giftMessage">
+      Your gift is a wish: a lifetime of happiness!
+    </h2>
+  </div>
+</section>
+
+<section>
+  <h2>Birthday Quiz</h2>
+  <div class="card">
+    <p id="question">Who is the star of today's celebration?</p>
+    <button class="quiz-option" onclick="answerQuiz(true)">Samina</button>
+    <button class="quiz-option" onclick="answerQuiz(false)">Someone else</button>
+    <h3 id="quizResult" class="gold"></h3>
+  </div>
+</section>
+
+<section>
+  <h2>Your Digital Birthday Card</h2>
+  <div class="card" style="background:linear-gradient(135deg,#5b244d,#2a1738)">
+    <p class="gold">A SPECIAL CARD FOR</p>
+    <h1 class="script" style="font-size:55px;color:#ffe5a6">Samina</h1>
+    <p>May your day be filled with love, laughter and unforgettable moments.</p>
+    <p class="script" style="font-size:32px;color:var(--pink)">Happy Birthday!</p>
+  </div>
+</section>
+
+<section>
+  <h2>A Secret Message</h2>
+  <div class="card secret">
+    <button class="btn" onclick="document.getElementById('secretMessage').classList.toggle('hidden')">
+      Unlock your secret message
+    </button>
+    <p id="secretMessage" class="hidden script" style="font-size:35px;color:var(--pink);margin-top:20px">
+      You are loved more than words can explain. Never forget how special you are.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2>The Grand Finale</h2>
+  <div class="card">
+    <p class="script" style="font-size:38px;color:var(--gold)">
+      This moment belongs to you!
+    </p>
+    <p>One more wish. One more smile. One unforgettable birthday.</p>
+    <button class="btn" onclick="grandFinale()">Start the grand celebration</button>
+  </div>
+</section>
 
 <footer>
- <div class="foot-heart">♡</div>
- <p>MADE WITH LOVE, ESPECIALLY FOR SAMINA</p>
- <p>May your life always sparkle in its own beautiful way.</p>
+  <p class="script gold" style="font-size:32px">Made with love for Samina</p>
+  <p>18 November 2026</p>
+  <p>May your happiness have no limits.</p>
 </footer>
 
 <script>
-/* LOADING SCREEN */
-window.addEventListener('load',()=>{
- setTimeout(()=>{
-  document.getElementById('loader').classList.add('hide');
- },1000);
+window.addEventListener("load",()=>{
+  setTimeout(()=>{
+    document.getElementById("loader").style.opacity="0";
+    setTimeout(()=>document.getElementById("loader").style.display="none",1000);
+  },1300);
+  startFloating();
+  updateCountdown();
+  setInterval(updateCountdown,1000);
 });
 
-/* FALLING HEARTS AND STARS */
-const particleLayer=document.getElementById('particles');
-
-function makeParticle(){
- const p=document.createElement('span');
- p.className='particle';
- p.textContent=['♡','✦','✧','♥'][Math.floor(Math.random()*4)];
- p.style.left=Math.random()*100+'%';
- p.style.fontSize=(10+Math.random()*17)+'px';
- p.style.color=Math.random()>.5?'#f5a9c7':'#e8c783';
- p.style.animationDuration=(7+Math.random()*8)+'s';
- particleLayer.appendChild(p);
- setTimeout(()=>p.remove(),16000);
-}
-setInterval(makeParticle,650);
-
-/* HERO BUTTON */
-function openSurprise(){
- document.getElementById('letter').scrollIntoView({behavior:'smooth'});
- celebrate();
- if(!audioCtx) toggleMelody('birthday');
-}
-
-/* BIRTHDAY COUNTDOWN */
-let targetDate=null;
-
-function saveDate(){
- const v=document.getElementById('birthdayDate').value;
- if(!v){
-  document.getElementById('countdownText').textContent='Please choose the birthday date first.';
-  return;
- }
- const [y,m,d]=v.split('-').map(Number);
- targetDate=new Date(y,m-1,d,0,0,0);
- updateCountdown();
-}
+const birthday = new Date(2026,10,18,0,0,0);
 
 function updateCountdown(){
- if(!targetDate)return;
-
- let diff=targetDate-new Date();
-
- if(diff<0){
-  document.getElementById('countdownText').textContent=
-   'Today is your celebration day — Happy Birthday, Samina!';
-  diff=0;
- }
-
- const days=Math.floor(diff/86400000);
- const hours=Math.floor(diff%86400000/3600000);
- const mins=Math.floor(diff%3600000/60000);
- const secs=Math.floor(diff%60000/1000);
-
- document.getElementById('days').textContent=String(days).padStart(2,'0');
- document.getElementById('hours').textContent=String(hours).padStart(2,'0');
- document.getElementById('minutes').textContent=String(mins).padStart(2,'0');
- document.getElementById('seconds').textContent=String(secs).padStart(2,'0');
-}
-setInterval(updateCountdown,1000);
-
-/* CANDLE */
-function toggleCandle(){
- const f=document.getElementById('flame');
- f.classList.toggle('off');
-
- document.getElementById('cakeMessage').textContent=
-  f.classList.contains('off')
-  ?'Wish made! May it come true.'
-  :'Make a wish, Samina!';
+  const now=new Date();
+  let diff=birthday-now;
+  if(diff<=0){
+    document.getElementById("countdown").style.display="none";
+    document.getElementById("countdownMessage").textContent=
+      "Happy Birthday, Samina! Today is your day!";
+    return;
+  }
+  const d=Math.floor(diff/86400000);
+  const h=Math.floor(diff/3600000)%24;
+  const m=Math.floor(diff/60000)%60;
+  const s=Math.floor(diff/1000)%60;
+  document.getElementById("days").textContent=d;
+  document.getElementById("hours").textContent=h;
+  document.getElementById("minutes").textContent=m;
+  document.getElementById("seconds").textContent=s;
 }
 
-/* CAKE CUTTING */
-function cutCake(){
- document.getElementById('cakeObject').classList.toggle('cut');
- document.getElementById('cakeMessage').textContent=
-  'Cake cutting time! Happy Birthday, Samina!';
- celebrate();
-}
-
-/* GIFT */
-function revealGift(){
- document.getElementById('giftMessage').classList.toggle('show');
- celebrate();
-}
-
-/* QUIZ */
-function answerQuiz(ok){
- document.getElementById('quizResult').textContent=
-  ok
-  ?'Correct! Today is all about you, Samina. ♡'
-  :'Nice try! The birthday star is Samina!';
-}
-
-/* PHOTO UPLOAD */
-function addPhotos(e){
- const grid=document.getElementById('galleryGrid');
-
- [...e.target.files].forEach(file=>{
-  if(!file.type.startsWith('image/'))return;
-
-  const url=URL.createObjectURL(file);
-  const box=document.createElement('div');
-  box.className='photo';
-
-  const img=document.createElement('img');
-  img.src=url;
-  img.alt='A birthday memory';
-
-  box.appendChild(img);
-  grid.appendChild(box);
- });
-}
-
-/* RANDOM WISHES */
-const wishes=[
- 'Tumhari smile kabhi kam na ho.',
- 'May every new day bring you something beautiful.',
- 'Tumhare dreams ko wings milein.',
- 'You are loved more than words can explain.',
- 'May your heart always find reasons to be happy.'
-];
-
-function newWish(){
- document.getElementById('secretLine').textContent=
-  wishes[Math.floor(Math.random()*wishes.length)]
-  +' — Always remember, Samina. ♡';
-}
-
-/* ORIGINAL BROWSER-GENERATED MUSIC */
-let audioCtx=null;
-let oscillators=[];
+let audioContext=null;
+let activeOscillators=[];
 let musicTimer=null;
 
-const melodies={
- birthday:[
-  392,392,440,392,523,494,
-  392,392,440,392,587,523,
-  392,392,784,659,523,494,440
- ],
- romantic:[
-  261.63,329.63,392,329.63,
-  293.66,349.23,440,349.23,
-  261.63,329.63,392,523.25
- ]
-};
-
 function stopMusic(){
- if(musicTimer)clearInterval(musicTimer);
- musicTimer=null;
-
- oscillators.forEach(o=>{
-  try{o.stop()}catch(e){}
- });
- oscillators=[];
-
- document.getElementById('musicStatus').textContent='Music is paused.';
+  if(musicTimer)clearInterval(musicTimer);
+  activeOscillators.forEach(o=>{try{o.stop()}catch(e){}});
+  activeOscillators=[];
+  document.getElementById("musicStatus").textContent="Music is off";
 }
 
-function toggleMelody(kind){
- if(musicTimer){
+function playNotes(notes,tempo){
   stopMusic();
-  return;
- }
-
- try{
-  audioCtx=audioCtx||new(window.AudioContext||window.webkitAudioContext)();
-  audioCtx.resume();
-
-  const notes=melodies[kind];
+  audioContext=audioContext||new (window.AudioContext||window.webkitAudioContext)();
+  audioContext.resume();
   let i=0;
-
-  const play=()=>{
-   if(i>=notes.length)i=0;
-
-   const osc=audioCtx.createOscillator();
-   const gain=audioCtx.createGain();
-
-   osc.type='sine';
-   osc.frequency.value=notes[i++];
-
-   gain.gain.setValueAtTime(.0001,audioCtx.currentTime);
-   gain.gain.exponentialRampToValueAtTime(.10,audioCtx.currentTime+.04);
-   gain.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+.42);
-
-   osc.connect(gain);
-   gain.connect(audioCtx.destination);
-
-   osc.start();
-   osc.stop(audioCtx.currentTime+.45);
-
-   oscillators.push(osc);
-   if(oscillators.length>30)oscillators.shift();
-  };
-
-  play();
-  musicTimer=setInterval(play,470);
-
-  document.getElementById('musicStatus').textContent=
-   kind==='birthday'
-   ?'Playing the Happy Birthday melody.'
-   :'Playing a soft instrumental melody.';
-
- }catch(e){
-  document.getElementById('musicStatus').textContent=
-   'Your browser could not start audio. Please try another browser.';
- }
+  function note(){
+    if(i>=notes.length){i=0}
+    const [frequency,duration]=notes[i++];
+    if(frequency){
+      const osc=audioContext.createOscillator();
+      const gain=audioContext.createGain();
+      osc.type="sine";
+      osc.frequency.value=frequency;
+      gain.gain.setValueAtTime(.0001,audioContext.currentTime);
+      gain.gain.exponentialRampToValueAtTime(.12,audioContext.currentTime+.03);
+      gain.gain.exponentialRampToValueAtTime(.0001,audioContext.currentTime+duration/1000);
+      osc.connect(gain);gain.connect(audioContext.destination);
+      osc.start();osc.stop(audioContext.currentTime+duration/1000);
+      activeOscillators.push(osc);
+    }
+  }
+  note();
+  musicTimer=setInterval(note,tempo);
+  document.getElementById("musicStatus").textContent="Original melody playing";
 }
 
-/* FIREWORKS AND CONFETTI */
-const canvas=document.getElementById('fireworks');
-const ctx=canvas.getContext('2d');
-let sparks=[];
-
-function resizeCanvas(){
- canvas.width=innerWidth;
- canvas.height=innerHeight;
+function playBirthday(){
+  playNotes([
+    [262,350],[262,350],[294,700],[262,700],[349,700],[330,1000],
+    [262,350],[262,350],[294,700],[262,700],[392,700],[349,1000],
+    [262,350],[262,350],[523,700],[440,700],[349,700],[330,700],[294,1000],
+    [466,350],[466,350],[440,700],[349,700],[392,700],[349,1000]
+  ],380);
 }
-addEventListener('resize',resizeCanvas);
-resizeCanvas();
+
+function playRomantic(){
+  playNotes([
+    [262,500],[330,500],[392,700],[330,500],[294,500],
+    [349,700],[392,500],[440,700],[392,700],[330,900]
+  ],520);
+}
+
+function lightCandles(){
+  document.getElementById("candle").textContent="🔥 🔥 🔥";
+  document.getElementById("cakeMessage").textContent="Make your beautiful birthday wish!";
+  sparkle();
+}
+
+function cutCake(){
+  const cake=document.getElementById("cake");
+  cake.style.transform="scale(.75) rotate(-8deg)";
+  document.getElementById("cakeMessage").textContent="The cake has been cut! Enjoy your celebration!";
+  setTimeout(()=>cake.style.transform="scale(1)",900);
+  sparkle();
+}
 
 function celebrate(){
- for(let n=0;n<5;n++){
-  const x=Math.random()*canvas.width;
-  const y=Math.random()*canvas.height*.55;
+  fireworks();
+  confetti(80);
+}
 
-  for(let i=0;i<34;i++){
-   const a=Math.PI*2*i/34;
-   const s=1+Math.random()*4;
+function openGift(){
+  document.getElementById("giftMessage").classList.remove("hidden");
+  document.querySelector(".gift").textContent="💝";
+  sparkle();
+}
 
-   sparks.push({
-    x,y,
-    vx:Math.cos(a)*s,
-    vy:Math.sin(a)*s,
-    life:65,
-    color:['#f5a9c7','#e8c783','#fff0e0','#e68bb0']
-     [Math.floor(Math.random()*4)]
-   });
+function revealLetter(){
+  document.getElementById("letter").style.border="1px solid var(--gold)";
+  document.getElementById("letter").style.background="#ffffff18";
+}
+
+document.getElementById("photoInput").addEventListener("change",function(){
+  const gallery=document.getElementById("gallery");
+  gallery.innerHTML="";
+  [...this.files].forEach(file=>{
+    const img=document.createElement("img");
+    img.src=URL.createObjectURL(file);
+    img.alt="Birthday memory";
+    gallery.appendChild(img);
+  });
+});
+
+function answerQuiz(correct){
+  document.getElementById("quizResult").textContent=
+    correct?"Correct! Samina is the star today!":"Try again! It is Samina's special day!";
+}
+
+function startFloating(){
+  setInterval(()=>{
+    const item=document.createElement("div");
+    item.className="floating";
+    item.textContent=["♥","✦","♥","🎈","❀"][Math.floor(Math.random()*5)];
+    item.style.left=Math.random()*100+"vw";
+    item.style.color=["#ff9ebc","#f5d58a","#ffffff"][Math.floor(Math.random()*3)];
+    item.style.fontSize=(15+Math.random()*20)+"px";
+    item.style.animationDuration=(5+Math.random()*5)+"s";
+    document.body.appendChild(item);
+    setTimeout(()=>item.remove(),10000);
+  },500);
+}
+
+function sparkle(){
+  confetti(35);
+}
+
+function confetti(amount){
+  for(let i=0;i<amount;i++){
+    const el=document.createElement("div");
+    el.className="floating";
+    el.textContent=["✦","♥","❀","★"][Math.floor(Math.random()*4)];
+    el.style.left=Math.random()*100+"vw";
+    el.style.fontSize=(12+Math.random()*22)+"px";
+    el.style.color=["#f5d58a","#ff9ebc","#fff"][Math.floor(Math.random()*3)];
+    el.style.animationDuration=(2+Math.random()*3)+"s";
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),5500);
   }
- }
 }
 
-function draw(){
- ctx.clearRect(0,0,canvas.width,canvas.height);
-
- sparks=sparks.filter(p=>p.life-->0);
-
- sparks.forEach(p=>{
-  p.x+=p.vx;
-  p.y+=p.vy;
-  p.vy+=.035;
-  p.vx*=.99;
-
-  ctx.globalAlpha=Math.max(0,p.life/65);
-  ctx.fillStyle=p.color;
-  ctx.beginPath();
-  ctx.arc(p.x,p.y,2,0,Math.PI*2);
-  ctx.fill();
- });
-
- ctx.globalAlpha=1;
- requestAnimationFrame(draw);
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+let particles=[];
+function resizeCanvas(){
+  canvas.width=innerWidth;
+  canvas.height=innerHeight;
 }
-draw();
+resizeCanvas();
+window.addEventListener("resize",resizeCanvas);
+
+function fireworks(){
+  for(let j=0;j<5;j++){
+    const x=Math.random()*canvas.width;
+    const y=Math.random()*canvas.height*.55;
+    for(let i=0;i<45;i++){
+      const angle=Math.PI*2*i/45;
+      const speed=1+Math.random()*4;
+      particles.push({
+        x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,
+        life:70,color=["#f5d58a","#ff9ebc","#ffffff","#c99aff"][j%4]
+      });
+    }
+  }
+}
+function animateFireworks(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles=particles.filter(p=>p.life>0);
+  particles.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;p.vy+=.025;p.life--;
+    ctx.globalAlpha=p.life/70;
+    ctx.fillStyle=p.color;
+    ctx.beginPath();ctx.arc(p.x,p.y,3,0,Math.PI*2);ctx.fill();
+  });
+  ctx.globalAlpha=1;
+  requestAnimationFrame(animateFireworks);
+}
+animateFireworks();
+
+function grandFinale(){
+  fireworks();
+  setTimeout(fireworks,500);
+  setTimeout(fireworks,1000);
+  confetti(120);
+  playBirthday();
+  document.getElementById("countdownMessage").textContent=
+    "HAPPY BIRTHDAY, SAMINA!";
+}
 </script>
 
 </body>
