@@ -1,142 +1,1517 @@
 
-.mystery-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(90px,1fr));
-  gap:12px;margin:20px auto;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#210d29">
+<title>Samina's Royal Birthday Celebration</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+ --bg:#190b21;
+ --bg2:#351536;
+ --pink:#ff9fca;
+ --pink2:#ed6fa7;
+ --gold:#f5d58a;
+ --gold2:#ffe9b5;
+ --white:#fff8fc;
+ --muted:#e8cbdc;
+ --glass:rgba(255,255,255,.075);
+ --border:rgba(245,213,138,.45);
+ --shadow:0 15px 45px rgba(0,0,0,.3);
 }
-.mystery-envelope{
-  padding:18px 8px;border:1px solid var(--gold);
-  background:#ffffff12;border-radius:15px;color:white;
-  font-size:35px;cursor:pointer;
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:85px}
+body{
+ background:radial-gradient(circle at top,#492346 0,#24112d 45%,#14091c 100%);
+ color:var(--white);
+ font-family:Poppins,sans-serif;
+ overflow-x:hidden;
 }
-.surprise-message{
-  min-height:65px;padding:18px;color:var(--pink);
-  font-size:18px;font-family:'Great Vibes',cursive;
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+
+.script{font-family:"Great Vibes",cursive}
+.serif{font-family:"Playfair Display",serif}
+.gold{color:var(--gold)}
+.pink{color:var(--pink)}
+.muted{color:var(--muted)}
+.center{text-align:center}
+
+section{
+ padding:85px 18px;
+ position:relative;
+ scroll-margin-top:65px;
+}
+.section-heading{
+ font-family:"Playfair Display",serif;
+ color:var(--gold);
+ font-size:clamp(27px,6vw,42px);
+ margin-bottom:12px;
+}
+.section-subtitle{
+ color:var(--muted);
+ max-width:650px;
+ margin:0 auto 28px;
+ line-height:1.8;
+}
+.card{
+ max-width:900px;
+ margin:22px auto;
+ padding:26px;
+ background:var(--glass);
+ border:1px solid var(--border);
+ border-radius:24px;
+ backdrop-filter:blur(12px);
+ box-shadow:var(--shadow);
+}
+.btn{
+ border:1px solid var(--gold);
+ border-radius:30px;
+ padding:12px 23px;
+ margin:6px;
+ color:#2b1730;
+ background:linear-gradient(110deg,var(--gold),var(--gold2));
+ font-weight:700;
+ box-shadow:0 5px 20px #f5d58a33;
+ transition:.25s;
+}
+.btn:hover{transform:translateY(-3px);box-shadow:0 8px 25px #f5d58a55}
+.btn-outline{
+ background:transparent;
+ color:var(--gold);
+}
+.btn-pink{
+ background:linear-gradient(110deg,#f27eae,#ffc1da);
+ border-color:#ffc1da;
+ color:#37152c;
+}
+.small{font-size:12px}
+.hidden{display:none!important}
+
+/* LOADING SCREEN */
+#loader{
+ position:fixed;
+ inset:0;
+ z-index:10000;
+ background:#190b21;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ flex-direction:column;
+ transition:opacity 1s;
+}
+.loader-heart{
+ font-size:65px;
+ color:var(--pink);
+ animation:heartbeat 1s infinite;
+}
+@keyframes heartbeat{
+ 50%{transform:scale(1.25)}
+}
+.loader-text{
+ font-family:"Great Vibes",cursive;
+ font-size:35px;
+ color:var(--gold);
+}
+
+/* NAVIGATION */
+.navbar{
+ position:sticky;
+ top:0;
+ z-index:100;
+ background:rgba(25,11,33,.93);
+ border-bottom:1px solid var(--border);
+ backdrop-filter:blur(15px);
+ padding:12px;
+}
+.nav-inner{
+ max-width:1100px;
+ margin:auto;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:12px;
+}
+.brand{
+ font-family:"Great Vibes",cursive;
+ font-size:30px;
+ color:var(--gold);
+}
+.nav-links{
+ display:flex;
+ gap:15px;
+ overflow-x:auto;
+ white-space:nowrap;
+ font-size:12px;
+ color:var(--muted);
+}
+.nav-links a:hover{color:var(--gold)}
+@media(max-width:650px){
+ .nav-inner{align-items:flex-start;flex-direction:column}
+ .nav-links{width:100%;padding-bottom:4px}
+}
+
+/* HERO */
+#hero{
+ min-height:95vh;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ flex-direction:column;
+ text-align:center;
+ overflow:hidden;
+ background:
+ radial-gradient(ellipse at center,#63355d 0,#321536 45%,#190b21 85%);
+}
+.hero-crown{
+ font-size:48px;
+ color:var(--gold);
+ animation:float 3s infinite;
+}
+.hero-kicker{
+ letter-spacing:5px;
+ font-size:12px;
+ color:var(--gold);
+ margin:15px 0;
+}
+.hero-title{
+ font-size:clamp(55px,13vw,110px);
+ line-height:1.1;
+ color:var(--gold);
+ text-shadow:0 0 30px #f5d58a44;
+}
+.hero-name{
+ font-size:clamp(65px,15vw,125px);
+ color:#ffc2dd;
+ line-height:1.1;
+ text-shadow:0 0 30px #ff9fca55;
+}
+.hero-date{
+ letter-spacing:4px;
+ margin:20px;
+ color:var(--gold2);
+}
+.hero-description{
+ max-width:620px;
+ padding:0 15px;
+ color:#f8dce9;
+ line-height:1.9;
+}
+.hero-decor{
+ font-size:38px;
+ margin:20px;
+}
+.scroll-hint{
+ margin-top:30px;
+ color:var(--gold);
+ animation:float 2s infinite;
+}
+@keyframes float{
+ 50%{transform:translateY(-12px)}
+}
+
+/* COUNTDOWN */
+.countdown{
+ display:flex;
+ justify-content:center;
+ flex-wrap:wrap;
+ gap:12px;
+}
+.time-box{
+ min-width:90px;
+ padding:18px 12px;
+ background:rgba(255,255,255,.08);
+ border:1px solid var(--border);
+ border-radius:17px;
+}
+.time-box strong{
+ display:block;
+ color:var(--gold);
+ font-size:32px;
+}
+.time-box span{
+ font-size:10px;
+ letter-spacing:2px;
+ color:var(--muted);
+}
+#countdownMessage{
+ color:var(--pink);
+ font-size:32px;
+ margin-top:25px;
+}
+
+/* CAKE */
+.cake-stage{
+ max-width:550px;
+ margin:20px auto;
+ padding:30px 15px;
+}
+.cake-candles{
+ font-size:28px;
+ margin-bottom:8px;
+ animation:candleGlow .7s infinite alternate;
+}
+@keyframes candleGlow{
+ to{filter:brightness(1.6)}
+}
+.cake-art{
+ font-size:clamp(100px,25vw,170px);
+ filter:drop-shadow(0 0 22px #ff9fca55);
+ transition:1s;
+}
+.cake-art.cut{
+ transform:rotate(-8deg) scale(.8);
+ filter:drop-shadow(0 0 35px #f5d58a);
+}
+.cake-caption{
+ color:var(--pink);
+ margin:15px;
+ font-size:17px;
+}
+.cake-tier{
+ width:220px;
+ height:48px;
+ margin:5px auto;
+ border-radius:12px 12px 20px 20px;
+ background:linear-gradient(90deg,#e77da9,#ffd2e2,#d65f9a);
+ border-bottom:5px solid #a74379;
+ box-shadow:0 7px 15px #0004;
+ position:relative;
+}
+.cake-tier:nth-child(2){width:175px}
+.cake-tier:nth-child(3){width:125px}
+.cake-tier:after{
+ content:"✦ ♥ ✦ ♥ ✦";
+ color:#fff1c7;
+ position:absolute;
+ left:0;right:0;
+ top:10px;
+}
+.cake-base{
+ width:260px;
+ height:15px;
+ background:var(--gold);
+ border-radius:50%;
+ margin:0 auto;
+}
+.cake-real{
+ display:none;
+ margin:25px auto;
+}
+.cake-real.show{display:block}
+
+/* LETTER */
+.letter{
+ text-align:left;
+ line-height:2;
+ color:#ffeaf3;
+ white-space:pre-line;
+}
+.letter-sign{
+ font-family:"Great Vibes",cursive;
+ color:var(--gold);
+ font-size:32px;
+ margin-top:20px;
+}
+
+/* GALLERY */
+.gallery{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+ gap:13px;
+ margin-top:20px;
+}
+.gallery img{
+ width:100%;
+ height:190px;
+ object-fit:cover;
+ border-radius:15px;
+ border:2px solid var(--gold);
+ cursor:pointer;
+ transition:.3s;
+}
+.gallery img:hover{transform:scale(1.035)}
+.upload-box{
+ border:1px dashed var(--gold);
+ border-radius:18px;
+ padding:22px;
+}
+
+/* TIMELINE */
+.timeline{
+ max-width:700px;
+ margin:auto;
+ text-align:left;
+}
+.timeline-item{
+ border-left:2px solid var(--gold);
+ margin:20px 0;
+ padding:10px 20px;
+ background:rgba(255,255,255,.04);
+ border-radius:0 15px 15px 0;
+}
+.timeline-item h3{color:var(--gold)}
+.timeline-item p{color:var(--muted);margin-top:5px}
+
+/* GIFT */
+.gift-box{
+ font-size:95px;
+ cursor:pointer;
+ transition:.4s;
+}
+.gift-box:hover{transform:rotate(10deg) scale(1.1)}
+.gift-reveal{
+ color:var(--pink);
+ font-family:"Great Vibes",cursive;
+ font-size:35px;
+ margin-top:20px;
+}
+
+/* GAME */
+.game-options{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px;
+ margin:20px auto;
+ max-width:500px;
+}
+.game-option{
+ padding:13px;
+ border:1px solid var(--border);
+ background:#ffffff12;
+ color:white;
+ border-radius:12px;
+}
+.game-option:hover{background:#79436e}
+.game-result{
+ color:var(--gold);
+ min-height:35px;
+ margin-top:15px;
+}
+.star-button{
+ font-size:45px;
+ background:none;
+ border:0;
+ padding:15px;
+}
+.balloon-game{
+ display:flex;
+ justify-content:center;
+ gap:15px;
+ flex-wrap:wrap;
+ margin:25px;
+}
+.balloon-button{
+ font-size:55px;
+ background:none;
+ border:0;
+ animation:float 2s infinite;
 }
 .wish-display{
-  padding:20px;background:#ffffff12;
-  border-radius:15px;margin:15px 0;color:var(--gold);
+ padding:20px;
+ border:1px solid var(--border);
+ background:#ffffff0d;
+ border-radius:15px;
+ margin:15px auto;
+ color:var(--pink);
+ min-height:65px;
 }
-.promise{
-  border:1px dashed var(--gold);padding:25px;
-  border-radius:20px;background:#ffffff09;
+.memory-wall{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+ gap:12px;
+ margin-top:20px;
 }
-<section>
-  <h2>Mystery Love Letters</h2>
-  <p>Three little surprises are waiting for you.</p>
-  <div class="card">
-    <div class="mystery-grid">
-      <button class="mystery-envelope" onclick="openLetter(0)">✉</button>
-      <button class="mystery-envelope" onclick="openLetter(1)">✉</button>
-      <button class="mystery-envelope" onclick="openLetter(2)">✉</button>
-    </div>
-    <div class="surprise-message" id="mysteryMessage">
-      Choose an envelope to reveal your message.
-    </div>
+.memory-note{
+ background:#ffe6b5;
+ color:#43213d;
+ border-radius:12px;
+ padding:17px;
+ min-height:100px;
+ transform:rotate(-1deg);
+ overflow-wrap:anywhere;
+}
+
+/* FORM */
+.text-field{
+ width:100%;
+ padding:14px;
+ margin:8px 0;
+ border-radius:12px;
+ border:1px solid var(--border);
+ background:#ffffff10;
+ color:white;
+ outline:none;
+}
+.text-field::placeholder{color:#d9b9ce}
+textarea.text-field{min-height:100px;resize:vertical}
+
+/* MUSIC */
+.music-control{
+ position:fixed;
+ right:12px;
+ bottom:12px;
+ z-index:200;
+ display:flex;
+ flex-direction:column;
+ gap:5px;
+}
+.music-control button{
+ border:1px solid var(--gold);
+ background:#291331;
+ color:var(--gold);
+ padding:10px 14px;
+ border-radius:25px;
+ font-size:12px;
+ box-shadow:var(--shadow);
+}
+#musicStatus{
+ color:var(--gold);
+ font-size:10px;
+ text-align:center;
+}
+
+/* EFFECTS */
+#effectsCanvas{
+ position:fixed;
+ inset:0;
+ z-index:150;
+ pointer-events:none;
+}
+.falling{
+ position:fixed;
+ top:-50px;
+ z-index:120;
+ pointer-events:none;
+ animation:fall linear forwards;
+}
+@keyframes fall{
+ to{transform:translateY(110vh) rotate(450deg);opacity:0}
+}
+.secret-box{
+ border:1px dashed var(--gold);
+ border-radius:18px;
+ padding:25px;
+}
+.final-message{
+ font-family:"Great Vibes",cursive;
+ font-size:clamp(35px,8vw,65px);
+ color:var(--gold);
+}
+footer{
+ padding:55px 20px;
+ background:#100817;
+ border-top:1px solid var(--border);
+}
+.footer-name{
+ font-family:"Great Vibes",cursive;
+ color:var(--gold);
+ font-size:38px;
+}
+@media(max-width:450px){
+ section{padding:65px 13px}
+ .card{padding:20px 15px}
+ .time-box{min-width:70px}
+ .time-box strong{font-size:25px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADING SCREEN -->
+<div id="loader">
+ <div class="loader-heart">♥</div>
+ <div class="loader-text">A royal surprise for Samina</div>
+ <p class="muted">Preparing your beautiful day...</p>
+</div>
+
+<canvas id="effectsCanvas"></canvas>
+
+<!-- MUSIC BUTTONS -->
+<div class="music-control">
+ <button onclick="playBirthdayMusic()">Play Birthday Melody</button>
+ <button onclick="playRomanticMusic()">Play Instrumental</button>
+ <button onclick="pauseMusic()">Pause Music</button>
+ <button onclick="openArijit()">Arijit Singh Songs</button>
+ <div id="musicStatus">Music is off</div>
+</div>
+
+<!-- NAVIGATION -->
+<nav class="navbar">
+ <div class="nav-inner">
+  <div class="brand">Samina's Celebration</div>
+  <div class="nav-links">
+   <a href="#hero">Home</a>
+   <a href="#countdown">Countdown</a>
+   <a href="#cake">Cake</a>
+   <a href="#letter">Letter</a>
+   <a href="#gallery">Gallery</a>
+   <a href="#games">Games</a>
+   <a href="#surprises">Surprises</a>
+   <a href="#finale">Finale</a>
   </div>
+ </div>
+</nav>
+
+<!-- HERO -->
+<header id="hero">
+ <div class="hero-crown">♛</div>
+ <p class="hero-kicker">A ROYAL BIRTHDAY CELEBRATION</p>
+ <h1 class="hero-title script">Happy Birthday</h1>
+ <h1 class="hero-name script">Samina</h1>
+ <p class="hero-date">18 / 11 / 2026</p>
+ <p class="hero-description">
+  Today the world celebrates someone special.
+  A beautiful soul, a wonderful smile, and a person
+  who deserves all the happiness in the world.
+ </p>
+ <div class="hero-decor">🎀 ✨ 🎂 ✨ 🎀</div>
+ <button class="btn" onclick="goTo('countdown')">Open Your Birthday Surprise</button>
+ <p class="scroll-hint">Scroll down for more surprises ↓</p>
+</header>
+
+<!-- COUNTDOWN -->
+<section id="countdown">
+ <h2 class="section-heading center">The Big Birthday Moment</h2>
+ <p class="section-subtitle center">
+  Every second brings us closer to your special celebration.
+ </p>
+ <div class="card">
+  <div class="countdown" id="countdownBoxes">
+   <div class="time-box"><strong id="days">00</strong><span>DAYS</span></div>
+   <div class="time-box"><strong id="hours">00</strong><span>HOURS</span></div>
+   <div class="time-box"><strong id="minutes">00</strong><span>MINUTES</span></div>
+   <div class="time-box"><strong id="seconds">00</strong><span>SECONDS</span></div>
+  </div>
+  <h2 id="countdownMessage" class="script center"></h2>
+  <p class="center muted">18 November 2026</p>
+ </div>
 </section>
 
+<!-- WELCOME -->
 <section>
-  <h2>Reasons You're Special</h2>
-  <div class="card">
-    <p>Want to hear something beautiful about yourself?</p>
-    <button class="btn" onclick="specialReason()">Reveal a reason</button>
-    <div class="wish-display" id="specialDisplay">
-      Your surprise is waiting!
-    </div>
-  </div>
+ <h2 class="section-heading center">A Day Made For You</h2>
+ <div class="card center">
+  <p class="script pink" style="font-size:38px">
+   You are the star of this beautiful day.
+  </p>
+  <p>
+   May your life be full of laughter, kindness, new adventures,
+   beautiful opportunities and unforgettable memories.
+  </p>
+  <div style="font-size:42px;margin:20px">🌸 💖 🌸</div>
+ </div>
 </section>
 
-<section>
-  <h2>The Birthday Wish Jar</h2>
-  <div class="card">
-    <div style="font-size:75px">🫙</div>
-    <p>Open the jar and discover a special wish.</p>
-    <button class="btn" onclick="openWish()">Open the wish jar</button>
-    <div class="wish-display" id="wishDisplay">
-      A little happiness is waiting inside.
-    </div>
+<!-- CAKE -->
+<section id="cake">
+ <h2 class="section-heading center">The Royal Birthday Cake</h2>
+ <p class="section-subtitle center">
+  Light your candles, make a wish and celebrate!
+ </p>
+ <div class="card center">
+  <div class="cake-stage">
+   <div id="candles" class="cake-candles">🕯️ 🕯️ 🕯️</div>
+   <div class="cake-real" id="realCake">
+    <div class="cake-tier"></div>
+    <div class="cake-tier"></div>
+    <div class="cake-tier"></div>
+    <div class="cake-base"></div>
+   </div>
+   <div id="cakeEmoji" class="cake-art">🎂</div>
+   <p id="cakeCaption" class="cake-caption">
+    A beautiful cake for a beautiful birthday.
+   </p>
   </div>
+  <button class="btn" onclick="lightCandles()">Light the candles</button>
+  <button class="btn btn-pink" onclick="cutCake()">Cut the cake</button>
+  <button class="btn btn-outline" onclick="cakeCelebration()">Cake celebration</button>
+  <p class="muted small">Make a wish before cutting your cake!</p>
+ </div>
 </section>
 
-<section>
-  <h2>A Little Birthday Challenge</h2>
-  <div class="card">
-    <p>Remember the most important birthday rule:</p>
-    <button class="quiz-option" onclick="birthdayGame(false)">
-      Never smile
-    </button>
-    <button class="quiz-option" onclick="birthdayGame(true)">
-      Enjoy every beautiful moment
-    </button>
-    <h3 id="gameResult" class="gold"></h3>
+<!-- BIRTHDAY LETTER -->
+<section id="letter">
+ <h2 class="section-heading center">A Letter From The Heart</h2>
+ <div class="card">
+  <div class="letter" id="birthdayLetter">
+Dear Samina,
+
+Today is a beautiful reminder of how lucky we are to have you in our lives.
+
+I hope your birthday brings you more happiness than you can imagine. May every dream you carry become a beautiful reality.
+
+Never stop believing in yourself. Keep learning, keep growing, and keep smiling.
+
+May you always find reasons to laugh, people who support you, and opportunities that help you shine.
+
+You deserve beautiful memories, peaceful days, success, and endless happiness.
+
+Thank you for being YOU.
+
+Happy Birthday, Samina!
+
+With love,
+Your family
   </div>
+  <div class="letter-sign">With lots of love ♥</div>
+  <button class="btn" onclick="letterSurprise()">Reveal a final message</button>
+  <p id="letterSurprise" class="pink hidden" style="margin-top:15px">
+   You are more special than words can ever express.
+  </p>
+ </div>
 </section>
 
-<section>
-  <h2>A Promise For You</h2>
-  <div class="card promise">
-    <p>One final surprise, just for Samina.</p>
-    <button class="btn" onclick="showPromise()">Open your promise</button>
-    <p id="promiseMessage" class="hidden script"
-       style="font-size:32px;color:var(--gold);margin-top:20px">
-      No matter how much life changes, you will always have people who love you, support you and wish to see you happy.
-    </p>
+<!-- GALLERY -->
+<section id="gallery">
+ <h2 class="section-heading center">Our Beautiful Memories</h2>
+ <p class="section-subtitle center">
+  Add your favourite photographs and make this celebration personal.
+ </p>
+ <div class="card">
+  <div class="upload-box">
+   <label class="btn" for="photoUpload">Choose Photos</label>
+   <input type="file" id="photoUpload" accept="image/*" multiple hidden>
+   <p class="small muted">Select pictures from your phone.</p>
   </div>
+  <div id="photoGallery" class="gallery"></div>
+ </div>
 </section>
-const mysteryLetters = [
-  "You make ordinary moments feel special. Never stop being yourself!",
-  "May your future be filled with exciting opportunities and beautiful memories.",
-  "You deserve endless happiness, success and love. Happy Birthday, Samina!"
+
+<!-- TIMELINE -->
+<section>
+ <h2 class="section-heading center">A Timeline Of Memories</h2>
+ <div class="card timeline">
+  <div class="timeline-item">
+   <h3>Beautiful Beginnings</h3>
+   <p>Every wonderful story begins with a special moment.</p>
+  </div>
+  <div class="timeline-item">
+   <h3>Little Adventures</h3>
+   <p>Every laugh, every conversation and every memory matters.</p>
+  </div>
+  <div class="timeline-item">
+   <h3>Unforgettable Moments</h3>
+   <p>The memories we make become treasures we keep forever.</p>
+  </div>
+  <div class="timeline-item">
+   <h3>18 November 2026</h3>
+   <p>A new birthday chapter begins for Samina!</p>
+  </div>
+ </div>
+</section>
+
+<!-- DIGITAL CARD -->
+<section>
+ <h2 class="section-heading center">Your Personal Birthday Card</h2>
+ <div class="card center" style="background:linear-gradient(140deg,#63294f,#291433)">
+  <p class="gold">A SPECIAL CARD FOR</p>
+  <h2 class="script" style="font-size:65px;color:#ffe4a4">Samina</h2>
+  <div style="font-size:45px">💐</div>
+  <p class="script pink" style="font-size:35px">
+   May your dreams bloom beautifully.
+  </p>
+  <p>Happy Birthday • 18 November 2026</p>
+  <button class="btn" onclick="cardCelebration()">Celebrate this card</button>
+ </div>
+</section>
+
+<!-- GIFT -->
+<section id="surprises">
+ <h2 class="section-heading center">Your Surprise Gift Box</h2>
+ <div class="card center">
+  <div id="giftBox" class="gift-box" onclick="openGift()">🎁</div>
+  <p>Tap your gift to reveal a surprise.</p>
+  <p id="giftMessage" class="gift-reveal hidden">
+   Your greatest gift is a future full of happiness, love and success!
+  </p>
+  <button class="btn" onclick="openGift()">Open My Gift</button>
+ </div>
+</section>
+
+<!-- MYSTERY LETTERS -->
+<section>
+ <h2 class="section-heading center">Three Mystery Envelopes</h2>
+ <p class="section-subtitle center">
+  Choose an envelope. Each one contains a special message.
+ </p>
+ <div class="card center">
+  <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap">
+   <button class="btn" onclick="mysteryLetter(0)">✉ Envelope 1</button>
+   <button class="btn" onclick="mysteryLetter(1)">✉ Envelope 2</button>
+   <button class="btn" onclick="mysteryLetter(2)">✉ Envelope 3</button>
+  </div>
+  <div id="mysteryMessage" class="wish-display script" style="font-size:27px">
+   Choose your mystery envelope.
+  </div>
+ </div>
+</section>
+
+<!-- REASONS -->
+<section>
+ <h2 class="section-heading center">Reasons You Are Special</h2>
+ <div class="card center">
+  <p>Discover a little reminder of how wonderful you are.</p>
+  <button class="btn" onclick="randomReason()">Show Me A Reason</button>
+  <div id="reasonDisplay" class="wish-display script" style="font-size:28px">
+   Your surprise is waiting...
+  </div>
+ </div>
+</section>
+
+<!-- WISH JAR -->
+<section>
+ <h2 class="section-heading center">The Birthday Wish Jar</h2>
+ <div class="card center">
+  <div style="font-size:85px">🫙</div>
+  <p>Open the jar and discover a beautiful wish.</p>
+  <button class="btn" onclick="openWishJar()">Open Wish Jar</button>
+  <div id="jarMessage" class="wish-display">
+   A special wish is waiting inside.
+  </div>
+ </div>
+</section>
+
+<!-- FORTUNE -->
+<section>
+ <h2 class="section-heading center">Your Birthday Fortune</h2>
+ <div class="card center">
+  <div style="font-size:70px">🔮</div>
+  <button class="btn" onclick="showFortune()">Reveal My Fortune</button>
+  <div id="fortuneMessage" class="wish-display">
+   Your next beautiful surprise is waiting.
+  </div>
+ </div>
+</section>
+
+<!-- MEMORY WALL -->
+<section>
+ <h2 class="section-heading center">Our Memory Wall</h2>
+ <p class="section-subtitle center">
+  Write your favourite memories and save them on this page.
+ </p>
+ <div class="card">
+  <textarea id="memoryInput" class="text-field"
+   placeholder="Write a beautiful memory..."></textarea>
+  <button class="btn" onclick="addMemory()">Add Memory</button>
+  <div id="memoryWall" class="memory-wall"></div>
+ </div>
+</section>
+
+<!-- BALLOON GAME -->
+<section id="games">
+ <h2 class="section-heading center">Pop The Birthday Balloons</h2>
+ <div class="card center">
+  <p>Tap all the balloons to reveal your celebration!</p>
+  <div class="balloon-game" id="balloonGame">
+   <button class="balloon-button" onclick="popBalloon(this)">🎈</button>
+   <button class="balloon-button" onclick="popBalloon(this)">🎈</button>
+   <button class="balloon-button" onclick="popBalloon(this)">🎈</button>
+   <button class="balloon-button" onclick="popBalloon(this)">🎈</button>
+   <button class="balloon-button" onclick="popBalloon(this)">🎈</button>
+  </div>
+  <h3 id="balloonScore" class="gold">Balloons: 0 / 5</h3>
+ </div>
+</section>
+
+<!-- QUIZ -->
+<section>
+ <h2 class="section-heading center">The Birthday Quiz</h2>
+ <div class="card center">
+  <h3 id="quizQuestion" class="gold">Who is today's birthday star?</h3>
+  <div id="quizOptions" class="game-options">
+   <button class="game-option" onclick="quizAnswer('Samina')">Samina</button>
+   <button class="game-option" onclick="quizAnswer('Someone else')">Someone else</button>
+  </div>
+  <p id="quizResult" class="game-result"></p>
+  <button class="btn" onclick="nextQuiz()">Next Question</button>
+ </div>
+</section>
+
+<!-- STAR GAME -->
+<section>
+ <h2 class="section-heading center">Collect The Birthday Stars</h2>
+ <div class="card center">
+  <p>Tap the star and collect ten points.</p>
+  <button class="star-button" onclick="collectStar()">⭐</button>
+  <h3 id="starScore" class="gold">Your score: 0</h3>
+  <button class="btn btn-outline" onclick="resetStars()">Play Again</button>
+ </div>
+</section>
+
+<!-- MAKE A WISH -->
+<section>
+ <h2 class="section-heading center">Make Your Birthday Wish</h2>
+ <div class="card center">
+  <p>Write one special wish for your future.</p>
+  <textarea id="myWish" class="text-field"
+   placeholder="My birthday wish is..."></textarea>
+  <button class="btn" onclick="saveWish()">Save My Wish</button>
+  <div id="savedWish" class="wish-display">
+   Your wish will appear here.
+  </div>
+ </div>
+</section>
+
+<!-- SECRET -->
+<section>
+ <h2 class="section-heading center">A Secret Message</h2>
+ <div class="card center secret-box">
+  <p>There is something special waiting for you.</p>
+  <button class="btn" onclick="unlockSecret()">Unlock Secret Message</button>
+  <div id="secretMessage" class="gift-reveal hidden">
+   You are loved, appreciated and important. Never forget that.
+  </div>
+ </div>
+</section>
+
+<!-- PROMISE -->
+<section>
+ <h2 class="section-heading center">A Birthday Promise</h2>
+ <div class="card center secret-box">
+  <p class="script pink" style="font-size:32px">
+   A little promise for your new chapter.
+  </p>
+  <button class="btn" onclick="showPromise()">Reveal The Promise</button>
+  <p id="promiseMessage" class="hidden" style="margin-top:20px">
+   Always believe in your dreams. Keep your heart kind, your mind curious,
+   and your spirit strong. May you always have people who support you.
+  </p>
+ </div>
+</section>
+
+<!-- FINAL CELEBRATION -->
+<section id="finale">
+ <h2 class="section-heading center">The Grand Birthday Finale</h2>
+ <div class="card center">
+  <div class="final-message">Happy Birthday, Samina!</div>
+  <div style="font-size:55px;margin:20px">🎂 🎉 💖 🎀</div>
+  <p>
+   May your birthday be unforgettable and your future even more beautiful.
+  </p>
+  <button class="btn" onclick="grandFinale()">Start Grand Celebration</button>
+  <p id="finaleMessage" class="gold" style="margin-top:20px"></p>
+ </div>
+</section>
+
+<footer>
+ <div class="footer-name">Made With Love For Samina</div>
+ <p class="gold">18 November 2026</p>
+ <p class="muted small">A special birthday experience made just for you.</p>
+ <p style="margin-top:15px">Forever special. Forever loved.</p>
+</footer>
+
+<script>
+/* ---------------------------------
+   GENERAL PAGE FUNCTIONS
+---------------------------------- */
+
+window.addEventListener("load",function(){
+ setTimeout(function(){
+  const loader=document.getElementById("loader");
+  loader.style.opacity="0";
+  setTimeout(()=>loader.style.display="none",1000);
+ },1300);
+
+ startFloating();
+ updateCountdown();
+ setInterval(updateCountdown,1000);
+});
+
+function goTo(id){
+ document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+
+/* ---------------------------------
+   BIRTHDAY COUNTDOWN
+   18 NOVEMBER 2026
+---------------------------------- */
+
+const birthdayDate=new Date(2026,10,18,0,0,0);
+
+function updateCountdown(){
+ const now=new Date();
+ let diff=birthdayDate-now;
+
+ if(diff<=0){
+  document.getElementById("countdownBoxes").style.display="none";
+  document.getElementById("countdownMessage").textContent=
+   "Happy Birthday, Samina! Today is your special day!";
+  return;
+ }
+
+ const days=Math.floor(diff/86400000);
+ const hours=Math.floor(diff/3600000)%24;
+ const minutes=Math.floor(diff/60000)%60;
+ const seconds=Math.floor(diff/1000)%60;
+
+ document.getElementById("days").textContent=days;
+ document.getElementById("hours").textContent=hours;
+ document.getElementById("minutes").textContent=minutes;
+ document.getElementById("seconds").textContent=seconds;
+}
+
+/* ---------------------------------
+   CAKE CELEBRATION
+---------------------------------- */
+
+function lightCandles(){
+ document.getElementById("candles").textContent="🔥 🔥 🔥";
+ document.getElementById("cakeCaption").textContent=
+  "Make a beautiful birthday wish, Samina!";
+ sparkle(25);
+}
+
+function cutCake(){
+ const cake=document.getElementById("cakeEmoji");
+ cake.classList.add("cut");
+ document.getElementById("cakeCaption").textContent=
+  "The birthday cake is ready to enjoy! Happy Birthday!";
+ setTimeout(()=>cake.classList.remove("cut"),1200);
+ confetti(50);
+}
+
+function cakeCelebration(){
+ document.getElementById("realCake").classList.add("show");
+ document.getElementById("cakeEmoji").style.display="none";
+ document.getElementById("cakeCaption").textContent=
+  "A royal three-tier cake for Samina!";
+ fireworks();
+ confetti(80);
+}
+
+/* ---------------------------------
+   LETTER
+---------------------------------- */
+
+function letterSurprise(){
+ document.getElementById("letterSurprise").classList.remove("hidden");
+ sparkle(30);
+}
+
+/* ---------------------------------
+   PHOTO GALLERY
+---------------------------------- */
+
+document.getElementById("photoUpload").addEventListener("change",function(){
+ const gallery=document.getElementById("photoGallery");
+ gallery.innerHTML="";
+
+ Array.from(this.files).forEach(file=>{
+  if(!file.type.startsWith("image/"))return;
+
+  const image=document.createElement("img");
+  image.src=URL.createObjectURL(file);
+  image.alt="Samina's birthday memory";
+  gallery.appendChild(image);
+ });
+});
+
+/* ---------------------------------
+   DIGITAL CARD
+---------------------------------- */
+
+function cardCelebration(){
+ confetti(60);
+ fireworks();
+}
+
+/* ---------------------------------
+   GIFT BOX
+---------------------------------- */
+
+let giftOpened=false;
+
+function openGift(){
+ document.getElementById("giftMessage").classList.remove("hidden");
+ document.getElementById("giftBox").textContent="💝";
+ giftOpened=true;
+ sparkle(40);
+}
+
+/* ---------------------------------
+   MYSTERY LETTERS
+---------------------------------- */
+
+const mysteryLetters=[
+ "You make ordinary moments feel special. Never stop being yourself!",
+ "May your future be filled with exciting opportunities and beautiful memories.",
+ "You deserve happiness, success, kindness and endless love."
 ];
 
-const specialReasons = [
-  "Your smile can make an ordinary day brighter.",
-  "Your kindness makes a difference.",
-  "Your presence makes memories special.",
-  "You deserve to be celebrated every day.",
-  "Your dreams are worth believing in.",
-  "You bring happiness to the people around you."
+function mysteryLetter(index){
+ document.getElementById("mysteryMessage").textContent=
+  mysteryLetters[index];
+ sparkle(15);
+}
+
+/* ---------------------------------
+   SPECIAL REASONS
+---------------------------------- */
+
+const reasons=[
+ "Your smile can make an ordinary day brighter.",
+ "Your kindness makes a difference.",
+ "Your presence makes memories special.",
+ "Your dreams are worth believing in.",
+ "You deserve to be celebrated.",
+ "You bring happiness to the people around you.",
+ "Your story is unique and beautiful.",
+ "Never underestimate your own potential."
 ];
 
-const birthdayWishes = [
-  "May every new day bring you a reason to smile.",
-  "May your dreams become beautiful realities.",
-  "May you always find courage to follow your heart.",
-  "May your life be filled with peace and happiness.",
-  "May your future be brighter than your biggest dreams."
+function randomReason(){
+ const value=reasons[Math.floor(Math.random()*reasons.length)];
+ document.getElementById("reasonDisplay").textContent=value;
+}
+
+/* ---------------------------------
+   WISH JAR
+---------------------------------- */
+
+const jarWishes=[
+ "May every new day bring you a reason to smile.",
+ "May your dreams become beautiful realities.",
+ "May you always find courage to follow your heart.",
+ "May your life be filled with peace and happiness.",
+ "May your future be brighter than your biggest dreams.",
+ "May you always be surrounded by people who care."
 ];
 
-function openLetter(index){
-  document.getElementById("mysteryMessage").textContent =
-    mysteryLetters[index];
-  sparkle();
+function openWishJar(){
+ const value=jarWishes[Math.floor(Math.random()*jarWishes.length)];
+ document.getElementById("jarMessage").textContent=value;
+ sparkle(25);
 }
 
-function specialReason(){
-  const item = specialReasons[
-    Math.floor(Math.random()*specialReasons.length)
-  ];
-  document.getElementById("specialDisplay").textContent = item;
+/* ---------------------------------
+   FORTUNE
+---------------------------------- */
+
+const fortunes=[
+ "A beautiful new chapter is waiting for you.",
+ "Keep believing in your dreams.",
+ "A year of learning and new adventures awaits.",
+ "Your kindness can make a difference.",
+ "May you discover new reasons to be happy.",
+ "Your future is full of possibilities."
+];
+
+function showFortune(){
+ const value=fortunes[Math.floor(Math.random()*fortunes.length)];
+ document.getElementById("fortuneMessage").textContent=value;
 }
 
-function openWish(){
-  const item = birthdayWishes[
-    Math.floor(Math.random()*birthdayWishes.length)
-  ];
-  document.getElementById("wishDisplay").textContent = item;
-  sparkle();
+/* ---------------------------------
+   MEMORY WALL
+---------------------------------- */
+
+function addMemory(){
+ const input=document.getElementById("memoryInput");
+ const value=input.value.trim();
+
+ if(!value){
+  alert("Please write a memory first.");
+  return;
+ }
+
+ const note=document.createElement("div");
+ note.className="memory-note";
+ note.textContent=value;
+
+ document.getElementById("memoryWall").appendChild(note);
+ input.value="";
 }
 
-function birthdayGame(correct){
-  document.getElementById("gameResult").textContent =
-    correct
-    ? "Exactly! Keep smiling and enjoy your special day!"
-    : "Try again! Birthdays are made for happiness!";
+/* ---------------------------------
+   BALLOON GAME
+---------------------------------- */
+
+let poppedBalloons=0;
+
+function popBalloon(button){
+ if(button.dataset.popped==="yes")return;
+
+ button.dataset.popped="yes";
+ button.textContent="✨";
+ poppedBalloons++;
+
+ document.getElementById("balloonScore").textContent=
+  "Balloons: "+poppedBalloons+" / 5";
+
+ if(poppedBalloons===5){
+  document.getElementById("balloonScore").textContent=
+   "Amazing! All balloons popped! Happy Birthday!";
+  fireworks();
+  confetti(80);
+ }
 }
+
+/* ---------------------------------
+   BIRTHDAY QUIZ
+---------------------------------- */
+
+const quizQuestions=[
+ {
+  question:"Who is today's birthday star?",
+  answers:["Samina","Someone else"],
+  correct:"Samina"
+ },
+ {
+  question:"What should Samina receive today?",
+  answers:["Happiness","More homework"],
+  correct:"Happiness"
+ },
+ {
+  question:"What should never disappear?",
+  answers:["Her smile","Her dreams"],
+  correct:"Her smile"
+ },
+ {
+  question:"What is the best birthday gift?",
+  answers:["Love and memories","A boring day"],
+  correct:"Love and memories"
+ }
+];
+
+let quizIndex=0;
+
+function showQuiz(){
+ const question=quizQuestions[quizIndex];
+ document.getElementById("quizQuestion").textContent=question.question;
+
+ const options=document.getElementById("quizOptions");
+ options.innerHTML="";
+
+ question.answers.forEach(answer=>{
+  const button=document.createElement("button");
+  button.className="game-option";
+  button.textContent=answer;
+  button.onclick=()=>quizAnswer(answer);
+  options.appendChild(button);
+ });
+
+ document.getElementById("quizResult").textContent="";
+}
+
+function quizAnswer(answer){
+ const correct=quizQuestions[quizIndex].correct;
+ document.getElementById("quizResult").textContent=
+  answer===correct
+   ?"Correct! Excellent answer!"
+   :"Nice try! The answer is "+correct+".";
+}
+
+function nextQuiz(){
+ quizIndex=(quizIndex+1)%quizQuestions.length;
+ showQuiz();
+}
+showQuiz();
+
+/* ---------------------------------
+   STAR GAME
+---------------------------------- */
+
+let starPoints=0;
+
+function collectStar(){
+ starPoints++;
+ document.getElementById("starScore").textContent=
+  "Your score: "+starPoints;
+
+ if(starPoints>=10){
+  document.getElementById("starScore").textContent=
+   "Birthday champion! You collected 10 stars!";
+  fireworks();
+  confetti(50);
+ }
+}
+
+function resetStars(){
+ starPoints=0;
+ document.getElementById("starScore").textContent="Your score: 0";
+}
+
+/* ---------------------------------
+   PERSONAL WISH
+---------------------------------- */
+
+function saveWish(){
+ const value=document.getElementById("myWish").value.trim();
+
+ if(!value){
+  document.getElementById("savedWish").textContent=
+   "Write your wish first.";
+  return;
+ }
+
+ document.getElementById("savedWish").textContent=
+  "Your birthday wish: "+value;
+}
+
+/* ---------------------------------
+   SECRET MESSAGE
+---------------------------------- */
+
+function unlockSecret(){
+ document.getElementById("secretMessage").classList.remove("hidden");
+ sparkle(40);
+}
+
+/* ---------------------------------
+   PROMISE
+---------------------------------- */
 
 function showPromise(){
-  document.getElementById("promiseMessage")
-    .classList.remove("hidden");
-  fireworks();
+ document.getElementById("promiseMessage").classList.remove("hidden");
+ sparkle(30);
 }
+
+/* ---------------------------------
+   FLOATING HEARTS AND STARS
+---------------------------------- */
+
+function startFloating(){
+ setInterval(()=>{
+  const element=document.createElement("div");
+  element.className="falling";
+
+  const symbols=["♥","✦","❀","♡","✧"];
+  element.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+
+  element.style.left=Math.random()*100+"vw";
+  element.style.fontSize=(12+Math.random()*20)+"px";
+  element.style.color=["#ff9fca","#f5d58a","#ffffff"][
+   Math.floor(Math.random()*3)
+  ];
+  element.style.animationDuration=(5+Math.random()*5)+"s";
+
+  document.body.appendChild(element);
+  setTimeout(()=>element.remove(),11000);
+ },650);
+}
+
+/* ---------------------------------
+   CONFETTI
+---------------------------------- */
+
+function confetti(amount=50){
+ for(let i=0;i<amount;i++){
+  const element=document.createElement("div");
+  element.className="falling";
+
+  element.textContent=["✦","♥","★","❀"][
+   Math.floor(Math.random()*4)
+  ];
+
+  element.style.left=Math.random()*100+"vw";
+  element.style.fontSize=(12+Math.random()*20)+"px";
+  element.style.color=["#f5d58a","#ff9fca","#ffffff"][
+   Math.floor(Math.random()*3)
+  ];
+  element.style.animationDuration=(2+Math.random()*4)+"s";
+
+  document.body.appendChild(element);
+  setTimeout(()=>element.remove(),6500);
+ }
+}
+
+function sparkle(amount=30){
+ confetti(amount);
+}
+
+/* ---------------------------------
+   FIREWORKS
+---------------------------------- */
+
+const canvas=document.getElementById("effectsCanvas");
+const ctx=canvas.getContext("2d");
+let particles=[];
+
+function resizeCanvas(){
+ canvas.width=window.innerWidth;
+ canvas.height=window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize",resizeCanvas);
+
+function fireworks(){
+ for(let j=0;j<6;j++){
+  const x=Math.random()*canvas.width;
+  const y=Math.random()*canvas.height*.55;
+
+  for(let i=0;i<45;i++){
+   const angle=Math.PI*2*i/45;
+   const speed=1+Math.random()*4;
+
+   particles.push({
+    x:x,y:y,
+    vx:Math.cos(angle)*speed,
+    vy:Math.sin(angle)*speed,
+    life:75,
+    color:["#f5d58a","#ff9fca","#ffffff","#c99aff"][
+     j%4
+    ]
+   });
+  }
+ }
+}
+
+function animateFireworks(){
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ particles=particles.filter(p=>p.life>0);
+
+ particles.forEach(p=>{
+  p.x+=p.vx;
+  p.y+=p.vy;
+  p.vy+=.025;
+  p.life--;
+
+  ctx.globalAlpha=p.life/75;
+  ctx.fillStyle=p.color;
+  ctx.beginPath();
+  ctx.arc(p.x,p.y,3,0,Math.PI*2);
+  ctx.fill();
+ });
+
+ ctx.globalAlpha=1;
+ requestAnimationFrame(animateFireworks);
+}
+animateFireworks();
+
+/* ---------------------------------
+   MUSIC - ORIGINAL MELODIES
+---------------------------------- */
+
+let audioContext=null;
+let activeOscillators=[];
+let musicTimer=null;
+
+function pauseMusic(){
+ if(musicTimer){
+  clearInterval(musicTimer);
+  musicTimer=null;
+ }
+
+ activeOscillators.forEach(osc=>{
+  try{osc.stop()}catch(error){}
+ });
+
+ activeOscillators=[];
+
+ document.getElementById("musicStatus").textContent="Music paused";
+}
+
+function playNotes(notes,tempo){
+ pauseMusic();
+
+ const AudioContextClass=window.AudioContext||window.webkitAudioContext;
+
+ if(!AudioContextClass){
+  document.getElementById("musicStatus").textContent=
+   "Audio is not supported in this browser.";
+  return;
+ }
+
+ audioContext=audioContext||new AudioContextClass();
+ audioContext.resume();
+
+ let index=0;
+
+ function playNext(){
+  if(index>=notes.length)index=0;
+
+  const note=notes[index++];
+
+  if(note[0]===0)return;
+
+  const oscillator=audioContext.createOscillator();
+  const gain=audioContext.createGain();
+
+  oscillator.type="sine";
+  oscillator.frequency.value=note[0];
+
+  gain.gain.setValueAtTime(.0001,audioContext.currentTime);
+  gain.gain.exponentialRampToValueAtTime(
+   .10,audioContext.currentTime+.03
+  );
+  gain.gain.exponentialRampToValueAtTime(
+   .0001,audioContext.currentTime+note[1]/1000
+  );
+
+  oscillator.connect(gain);
+  gain.connect(audioContext.destination);
+
+  oscillator.start();
+  oscillator.stop(audioContext.currentTime+note[1]/1000);
+
+  activeOscillators.push(oscillator);
+ }
+
+ playNext();
+ musicTimer=setInterval(playNext,tempo);
+
+ document.getElementById("musicStatus").textContent=
+  "Original melody is playing";
+}
+
+function playBirthdayMusic(){
+ const notes=[
+  [262,350],[262,350],[294,700],[262,700],[349,700],[330,1000],
+  [262,350],[262,350],[294,700],[262,700],[392,700],[349,1000],
+  [262,350],[262,350],[523,700],[440,700],[349,700],[330,700],[294,1000],
+  [466,350],[466,350],[440,700],[349,700],[392,700],[349,1000]
+ ];
+
+ playNotes(notes,380);
+}
+
+function playRomanticMusic(){
+ const notes=[
+  [262,500],[330,500],[392,700],[330,500],
+  [294,500],[349,700],[392,500],[440,700],
+  [392,700],[330,900],[294,500],[262,1000],
+  [330,500],[392,500],[440,800],[392,1000]
+ ];
+
+ playNotes(notes,520);
+}
+
+function openArijit(){
+ window.open(
+  "https://www.youtube.com/results?search_query=Arijit+Singh+romantic+songs",
+  "_blank"
+ );
+}
+
+/* ---------------------------------
+   GRAND FINALE
+---------------------------------- */
+
+function grandFinale(){
+ fireworks();
+ setTimeout(fireworks,500);
+ setTimeout(fireworks,1000);
+ setTimeout(fireworks,1600);
+
+ confetti(150);
+
+ document.getElementById("finaleMessage").textContent=
+  "Samina, this celebration is all for you!";
+
+ playBirthdayMusic();
+}
+</script>
+
+</body>
+</html>
