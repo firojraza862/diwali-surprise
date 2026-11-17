@@ -1,130 +1,672 @@
-"""
-Study Roadmap Planner
-Subjects: Bangla, English, Life Science, Physical Science,
-          Mathematics, History, Geography
-Run:  python study_planner.py
-"""
 
-from datetime import date, datetime
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#190d24">
+<title>Samina | Royal Birthday</title>
 
-SUBJECTS = {
-    "Bangla":           "Read the lesson, write 5 key points, practise grammar and writing.",
-    "English":          "Read aloud, learn 10 new words, practise grammar and writing.",
-    "Life Science":     "Study diagrams, make short notes, revise terms by recalling.",
-    "Physical Science": "Learn formulas and laws, then solve numericals.",
-    "Mathematics":      "Solve problems on paper every day. Do not just read solutions.",
-    "History":          "Make a timeline, note causes and effects, write short answers.",
-    "Geography":        "Practise maps, learn definitions, draw diagrams.",
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --gold:#f7d58a;
+  --pink:#f5a8c7;
+  --dark:#190d24;
+  --white:#fff5fb;
 }
 
-# Harder / practice-heavy subjects get studied earlier in the day.
-PRIORITY = ["Mathematics", "Physical Science", "Life Science",
-            "English", "Bangla", "Geography", "History"]
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--dark);color:var(--white);font-family:Poppins,sans-serif;overflow-x:hidden}
+button,select{font:inherit}
+button{border:0;cursor:pointer}
 
-DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+#loading{
+  position:fixed;inset:0;z-index:1000;
+  display:grid;place-content:center;text-align:center;
+  background:var(--dark);transition:opacity .8s,visibility .8s
+}
+#loading.hide{opacity:0;visibility:hidden}
+.loader-crown{color:var(--gold);font-size:65px;animation:pulse 1.5s infinite}
+#loading h1{font-family:'Playfair Display',serif;color:var(--gold);margin:15px}
+#loading p{color:#d8b8d1}
 
+.hero{
+  min-height:100svh;display:flex;align-items:center;
+  justify-content:center;flex-direction:column;text-align:center;
+  padding:35px 20px;position:relative;overflow:hidden;
+  background:radial-gradient(ellipse at 50% 20%,#63324e 0%,transparent 55%),linear-gradient(145deg,#190d24,#30142e,#160b20)
+}
+.crown{color:var(--gold);font-size:65px;animation:float 3s infinite}
+.eyebrow{color:var(--gold);letter-spacing:5px;font-size:11px;margin:15px 0}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(43px,10vw,85px);line-height:1.2;margin:15px 0}
+.hero h1 span{color:var(--gold);font-style:italic;text-shadow:0 0 30px #f7d58a66}
+.hero-text{max-width:440px;color:#f3dce9;line-height:1.9;margin:12px auto 25px}
+.gold-btn{
+  background:linear-gradient(110deg,#b9863c,#ffe4a2,#c18b42);
+  color:#29162b;padding:14px 27px;border-radius:35px;
+  font-weight:700;box-shadow:0 8px 30px #f7d58a30;transition:.3s
+}
+.gold-btn:hover{transform:translateY(-3px)}
+.small-note{color:#d9b9cf;font-size:11px;margin-top:15px}
+#celebration{display:none}
+#celebration.show{display:block;animation:fadeIn 1s}
 
-def ask_float(prompt, default):
-    raw = input(f"{prompt} [{default}]: ").strip()
-    try:
-        return float(raw) if raw else default
-    except ValueError:
-        return default
+.nav{
+  position:sticky;top:0;z-index:50;display:flex;
+  justify-content:center;gap:8px;padding:12px 8px;
+  background:#190d24ef;backdrop-filter:blur(15px);
+  border-bottom:1px solid #f7d58a25;flex-wrap:wrap
+}
+.nav a{color:#f6d9e8;text-decoration:none;font-size:10px;padding:7px 10px;border-radius:20px}
+.nav a:hover{background:#f7d58a25;color:var(--gold)}
 
+.section{max-width:900px;margin:auto;padding:75px 20px;text-align:center}
+.section h2{font-family:'Playfair Display',serif;font-size:clamp(27px,6vw,42px);color:var(--gold);margin-bottom:15px}
+.section-desc{color:#d9bfd2;font-size:13px;line-height:1.9;max-width:600px;margin:0 auto 25px}
+.panel{background:linear-gradient(145deg,#35203e,#21122d);border:1px solid #f7d58a38;border-radius:22px;padding:25px;box-shadow:0 15px 45px #0004}
+.divider{width:75px;height:2px;background:var(--gold);margin:22px auto}
 
-def pick_weak_subjects():
-    print("\nSubjects:", ", ".join(SUBJECTS))
-    raw = input("Weak subjects (comma separated, or press Enter to skip): ")
-    weak = [s.strip().lower() for s in raw.split(",") if s.strip()]
-    return [s for s in SUBJECTS if s.lower() in weak]
+.music-controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+select{width:100%;max-width:340px;padding:12px;border-radius:12px;background:#21122d;color:white;border:1px solid var(--gold);margin:10px}
+.status{font-size:12px;color:var(--pink);margin-top:15px}
 
+.timer{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:550px;margin:25px auto}
+.time-box{padding:17px 5px;background:#38213d;border:1px solid #f7d58a50;border-radius:14px}
+.time-box strong{display:block;font-size:28px;color:var(--gold)}
+.time-box span{font-size:10px;color:#e5c8df}
 
-def build_week(hours_per_day, weak):
-    # Each day gets 2 subjects (1 subject if hours < 2). Weak subjects
-    # appear more often, so they are added extra times to the queue.
-    per_day = 1 if hours_per_day < 2 else 2
-    queue = list(PRIORITY) + weak  # weak subjects appear twice
-    plan, idx = {}, 0
-    for day in DAYS:
-        todays = []
-        while len(todays) < per_day:
-            subject = queue[idx % len(queue)]
-            idx += 1
-            if subject not in todays:
-                todays.append(subject)
-        plan[day] = todays
-    return plan, per_day
+#cake-area{position:relative;max-width:350px;height:300px;margin:35px auto 20px;display:flex;align-items:end;justify-content:center}
+.cake{width:260px;position:relative;transition:transform 1s}
+.tier{position:relative;margin:auto;border:3px solid #f6d59a;box-shadow:inset 0 -9px #a74b69;background:linear-gradient(90deg,#d78aa6,#ffe0d7,#d78aa6);border-radius:15px 15px 8px 8px}
+.tier:before{content:"";position:absolute;top:0;left:0;right:0;height:15px;background:#fff0e8;border-radius:50%}
+.tier-one{width:95px;height:55px}
+.tier-two{width:165px;height:65px}
+.tier-three{width:245px;height:75px}
+.cake-plate{width:285px;height:13px;margin:auto;background:linear-gradient(90deg,#9e682e,#ffe7a2,#a46a31);border-radius:50%}
+.candles{position:absolute;bottom:205px;left:0;right:0;display:flex;justify-content:center;gap:25px;z-index:5}
+.candle{width:10px;height:35px;border-radius:4px;background:repeating-linear-gradient(45deg,#fff,#fff 4px,#e8a7c4 4px,#e8a7c4 8px);position:relative}
+.flame{position:absolute;top:-17px;left:1px;width:8px;height:14px;border-radius:50% 50% 50% 0;background:#ffbf47;transform:rotate(-45deg);box-shadow:0 0 14px #ffae00;display:none;animation:flicker .4s infinite alternate}
+.flame.on{display:block}
+.cake.cut{transform:translateX(-12px) rotate(-3deg)}
+#cake-slice{font-size:55px;display:none;animation:pop .8s}
+#cake-status{color:var(--pink);font-size:13px;margin:15px}
 
+.letter{text-align:left;line-height:2;color:#f6e2ee;font-family:'Playfair Display',serif;font-size:16px}
+.letter .signature{color:var(--gold);margin-top:20px}
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.photo{min-height:150px;border-radius:15px;overflow:hidden;border:1px solid #f7d58a55;background:#39233e;display:grid;place-items:center;color:#f4c7df;font-size:13px}
+.photo img{width:100%;height:180px;object-fit:cover}
+.birthday-card{max-width:420px;margin:auto;padding:35px 20px;border:2px solid var(--gold);border-radius:20px;background:linear-gradient(135deg,#692c51,#2c173b);box-shadow:0 0 35px #f7d58a22}
+.card-crown{font-size:50px;color:var(--gold)}
+.birthday-card h3{font-family:'Playfair Display',serif;font-size:30px;color:var(--gold);margin:15px 0}
+.timeline{text-align:left;border-left:2px solid var(--gold);padding-left:22px;margin-left:15px}
+.memory{margin:20px 0;position:relative}
+.memory:before{content:"";position:absolute;left:-29px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--gold)}
+.memory h3{color:var(--pink)}
+.memory p{color:#d9bfd2;font-size:13px;margin-top:5px}
+#quiz-options{display:grid;gap:10px;max-width:400px;margin:20px auto}
+.quiz-option{background:#49304b;color:white;padding:13px;border:1px solid #f7d58a55;border-radius:12px}
+.quiz-option:hover{background:#78506c}
+#quiz-result,#gift-message,#secret-message{color:var(--gold);line-height:2;margin:15px}
+.gift-box{font-size:100px;display:block;animation:float 2s infinite;margin:15px}
+#secret-message,#gift-message{display:none}
+#secret-message.visible,#gift-message.visible{display:block}
+.wish{color:var(--pink);font-family:'Playfair Display',serif;font-size:23px;min-height:65px}
+#grand-finale{background:radial-gradient(ellipse,#582844,#190d24);max-width:none}
+footer{text-align:center;padding:30px;color:#c9a9c0;font-size:11px;border-top:1px solid #f7d58a22}
+#effects{position:fixed;inset:0;pointer-events:none;z-index:80;overflow:hidden}
+.particle{position:absolute;top:-30px;animation:fall linear forwards;font-size:20px}
+.bubble{position:fixed;bottom:-80px;font-size:35px;z-index:1;pointer-events:none;animation:balloonUp 9s linear forwards}
+#fireworks{position:fixed;inset:0;z-index:70;pointer-events:none;width:100%;height:100%}
 
-def fmt_time(minutes):
-    h, m = divmod(int(minutes), 60)
-    return f"{h:02d}:{m:02d}"
+@keyframes fadeIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
+@keyframes pulse{50%{transform:scale(1.15);text-shadow:0 0 25px var(--gold)}}
+@keyframes flicker{from{transform:rotate(-45deg) scale(1)}to{transform:rotate(-40deg) scale(1.15)}}
+@keyframes pop{from{transform:scale(.2)}to{transform:scale(1)}}
+@keyframes fall{to{transform:translateY(110vh) rotate(700deg);opacity:0}}
+@keyframes balloonUp{to{transform:translateY(-120vh) rotate(15deg);opacity:0}}
 
+@media(max-width:500px){
+  .section{padding:55px 17px}
+  .panel{padding:20px 14px}
+  .timer{gap:5px}
+  .time-box strong{font-size:22px}
+  .time-box{padding:13px 3px}
+  .gallery{gap:8px}
+  .nav{gap:2px}
+  .nav a{font-size:9px;padding:7px}
+}
+</style>
+</head>
 
-def print_plan(plan, per_day, hours_per_day, start_hour):
-    total_min = hours_per_day * 60
-    review = 15  # nightly recap
-    block = (total_min - review) / per_day
+<body>
 
-    print("\n" + "=" * 52)
-    print("           YOUR WEEKLY STUDY ROADMAP")
-    print("=" * 52)
-    for day, subjects in plan.items():
-        print(f"\n{day}")
-        t = start_hour * 60
-        for s in subjects:
-            end = t + block
-            print(f"  {fmt_time(t)}-{fmt_time(end)}  {s}")
-            print(f"      Tip: {SUBJECTS[s]}")
-            t = end
-        print(f"  {fmt_time(t)}-{fmt_time(t + review)}  Recap (close books, recall)")
-    print("\nSunday")
-    print("  Weekly review of all 7 subjects, fix weak topics, then rest.")
+<div id="loading">
+  <div class="loader-crown">♛</div>
+  <h1>Ek Special Surprise...</h1>
+  <p>Samina ke liye kuch khaas!</p>
+</div>
 
+<div id="effects"></div>
+<canvas id="fireworks"></canvas>
 
-def print_rules():
-    print("\n" + "-" * 52)
-    print("HOW TO STUDY EACH BLOCK")
-    print("-" * 52)
-    print("1. Skim headings (5 min)")
-    print("2. Study actively and write short notes")
-    print("3. Take a 5-10 min break after every 40-50 min")
-    print("4. Close the book and recall what you learned")
-    print("5. Solve questions / write answers")
-    print("Sleep 7-8 hours. Keep your phone away while studying.")
+<header class="hero" id="home">
+  <div class="crown">♛</div>
+  <p class="eyebrow">A ROYAL CELEBRATION</p>
+  <h1>Happy Birthday<br><span>Samina</span></h1>
+  <p class="hero-text">Aaj ka din sirf tumhare naam. Tumhari smile hamesha chamakti rahe!</p>
+  <button class="gold-btn" id="open">Open My Surprise</button>
+  <p class="small-note">Tap to enter your special birthday world</p>
+</header>
 
+<div id="celebration">
 
-def exam_countdown():
-    raw = input("\nExam date (YYYY-MM-DD, or Enter to skip): ").strip()
-    if not raw:
-        return
-    try:
-        exam = datetime.strptime(raw, "%Y-%m-%d").date()
-    except ValueError:
-        print("Date format not understood, skipping countdown.")
-        return
-    days_left = (exam - date.today()).days
-    if days_left < 0:
-        print("That date has already passed.")
-        return
-    print(f"\n{days_left} days left (about {days_left // 7} weeks).")
-    if days_left > 30:
-        print("Phase 1: finish syllabus. Phase 2 (last 30 days): revise and "
-              "practise past papers. Last week: only revision.")
-    else:
-        print("Focus on revision and past papers. Do not start new topics.")
+<nav class="nav">
+  <a href="#wishes">Wishes</a>
+  <a href="#music">Music</a>
+  <a href="#countdown">Countdown</a>
+  <a href="#cake-section">Cake</a>
+  <a href="#letter">Letter</a>
+  <a href="#gallery">Photos</a>
+  <a href="#quiz">Quiz</a>
+  <a href="#gift">Gift</a>
+</nav>
 
+<section class="section" id="wishes">
+  <p class="eyebrow">YOUR SPECIAL DAY</p>
+  <h2>Happy Birthday, Samina!</h2>
+  <div class="divider"></div>
+  <p class="section-desc">Tumhari zindagi khushiyon, pyaar aur kamyabi se bhari rahe. Har naya din tumhare liye ek nayi khushi lekar aaye. Hamesha muskurati raho!</p>
+</section>
 
-def main():
-    print("STUDY ROADMAP PLANNER")
-    hours = ask_float("Study hours per day", 3.0)
-    start = ask_float("Start time (24h, e.g. 17 for 5 PM)", 17.0)
-    weak = pick_weak_subjects()
-    plan, per_day = build_week(hours, weak)
-    print_plan(plan, per_day, hours, start)
-    print_rules()
-    exam_countdown()
+<section class="section" id="music">
+  <h2>A Little Music For You</h2>
+  <p class="section-desc">Apni favourite birthday melody choose karo.</p>
+  <div class="panel">
+    <select id="music-choice">
+      <option value="happy">Classic Happy Birthday</option>
+      <option value="romantic">Romantic Instrumental</option>
+      <option value="arijit">Arijit Singh Music Option</option>
+    </select>
+    <div class="music-controls">
+      <button class="gold-btn" id="play">Play Music</button>
+      <button class="gold-btn" id="pause">Pause Music</button>
+    </div>
+    <p class="status" id="music-status">Music is ready.</p>
+    <p class="small-note">Arijit Singh option opens a YouTube search.</p>
+  </div>
+</section>
 
+<section class="section" id="countdown">
+  <h2>Birthday Countdown</h2>
+  <p class="section-desc">The countdown to your special date.</p>
+  <div class="panel">
+    <p class="small-note">Set the birthday date below:</p>
+    <input type="date" id="birthday-date" style="padding:12px;border-radius:10px;margin:10px">
+    <div class="timer">
+      <div class="time-box"><strong id="days">00</strong><span>Days</span></div>
+      <div class="time-box"><strong id="hours">00</strong><span>Hours</span></div>
+      <div class="time-box"><strong id="minutes">00</strong><span>Minutes</span></div>
+      <div class="time-box"><strong id="seconds">00</strong><span>Seconds</span></div>
+    </div>
+    <p id="countdown-message" class="status">Choose a date to start the countdown.</p>
+  </div>
+</section>
 
-if __name__ == "__main__":
-    main()
+<section class="section" id="cake-section">
+  <p class="eyebrow">THE ROYAL CAKE CEREMONY</p>
+  <h2>Your Royal Birthday Cake</h2>
+  <p class="section-desc">Light the candles and make a special wish!</p>
+  <div class="panel">
+    <div id="cake-area">
+      <div class="candles">
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+      </div>
+      <div class="cake" id="cake">
+        <div class="tier tier-one"></div>
+        <div class="tier tier-two"></div>
+        <div class="tier tier-three"></div>
+        <div class="cake-plate"></div>
+      </div>
+    </div>
+    <p id="cake-status">Your royal cake is ready!</p>
+    <div class="music-controls">
+      <button class="gold-btn" id="light">Light Candles</button>
+      <button class="gold-btn" id="cut">Cut The Cake</button>
+    </div>
+    <div id="cake-slice">🍰</div>
+  </div>
+</section>
+
+<section class="section" id="letter">
+  <h2>A Letter Just For You</h2>
+  <div class="panel letter">
+    <p>Dear Samina,</p><br>
+    <p>Aaj tumhara special day hai, aur main chahta hoon ki tumhari life hamesha khushiyon se bhari rahe. Tumhare saare sapne poore hon, tumhe har kadam par success mile aur tumhari smile kabhi kam na ho.</p><br>
+    <p>Life mein chahe kitni bhi challenges aayein, hamesha strong rehna. Tum bahut special ho. Aaj ka din enjoy karo aur khoob saari memories banao!</p>
+    <p class="signature">With lots of love,<br>Your Family</p>
+  </div>
+</section>
+
+<section class="section" id="gallery">
+  <h2>Our Beautiful Memories</h2>
+  <p class="section-desc">Add your favourite photos below.</p>
+  <div class="panel">
+    <div class="gallery" id="photo-gallery">
+      <div class="photo">Photo 1</div>
+      <div class="photo">Photo 2</div>
+      <div class="photo">Photo 3</div>
+      <div class="photo">Photo 4</div>
+    </div>
+    <p class="small-note">Select photos below to add them to the gallery.</p>
+    <input type="file" id="photo-input" accept="image/*" multiple>
+  </div>
+</section>
+
+<section class="section" id="card">
+  <h2>Your Royal Birthday Card</h2>
+  <div class="birthday-card">
+    <div class="card-crown">♛</div>
+    <p class="eyebrow">A SPECIAL CARD FOR YOU</p>
+    <h3>Happy Birthday, Samina!</h3>
+    <p>May your life always shine with happiness, love and beautiful memories.</p>
+    <div class="divider"></div>
+    <p>Made with love.</p>
+  </div>
+</section>
+
+<section class="section" id="timeline">
+  <h2>Our Memory Timeline</h2>
+  <p class="section-desc">Some moments deserve to be remembered forever.</p>
+  <div class="panel timeline">
+    <div class="memory"><h3>A Beautiful Beginning</h3><p>Har special journey ki ek beautiful beginning hoti hai.</p></div>
+    <div class="memory"><h3>Unforgettable Moments</h3><p>Chhoti-chhoti memories hi life ko special banati hain.</p></div>
+    <div class="memory"><h3>More Memories Ahead</h3><p>Abhi bahut saari beautiful memories banana baaki hain!</p></div>
+  </div>
+</section>
+
+<section class="section" id="quiz">
+  <h2>A Little Birthday Quiz</h2>
+  <p class="section-desc">Let's see how well you know your birthday surprise!</p>
+  <div class="panel">
+    <p id="question">Ready for the quiz?</p>
+    <div id="quiz-options"></div>
+    <p id="quiz-result"></p>
+    <button class="gold-btn" id="start-quiz">Start Quiz</button>
+  </div>
+</section>
+
+<section class="section" id="gift">
+  <h2>A Special Gift For You</h2>
+  <div class="panel">
+    <span class="gift-box" id="gift-box">🎁</span>
+    <button class="gold-btn" id="open-gift">Open Your Gift</button>
+    <p id="gift-message">Tum meri life ki sabse special sister ho! Hamesha khush raho!</p>
+  </div>
+</section>
+
+<section class="section" id="secret">
+  <h2>A Secret Message</h2>
+  <div class="panel">
+    <p class="section-desc">There is something special waiting for you.</p>
+    <button class="gold-btn" id="unlock-secret">Unlock Secret Message</button>
+    <p id="secret-message">Tumhari khushi mere liye bahut special hai. Keep smiling, Samina!</p>
+  </div>
+</section>
+
+<section class="section" id="wishes-generator">
+  <h2>One More Birthday Wish</h2>
+  <div class="panel">
+    <p class="wish" id="wish">Tumhari duniya hamesha khushiyon se roshan rahe!</p>
+    <button class="gold-btn" id="new-wish">Another Wish</button>
+  </div>
+</section>
+
+<section class="section" id="grand-finale">
+  <p class="eyebrow">THE GRAND FINALE</p>
+  <h2>Samina, This Day Is Yours!</h2>
+  <p class="section-desc">Keep smiling. Keep shining. May your every dream come true!</p>
+  <button class="gold-btn" id="celebrate-again">Celebrate Again!</button>
+</section>
+
+<footer>
+  <p>Made with love for Samina.</p>
+  <p>One day. One celebration. A lifetime of memories.</p>
+</footer>
+
+</div>
+
+<script>
+/* OPEN SURPRISE */
+const openButton=document.getElementById("open");
+const celebration=document.getElementById("celebration");
+
+window.addEventListener("load",()=>{
+  setTimeout(()=>document.getElementById("loading").classList.add("hide"),1300);
+});
+
+openButton.addEventListener("click",()=>{
+  celebration.classList.add("show");
+  openButton.textContent="Surprise Opened!";
+  openButton.disabled=true;
+  celebration.scrollIntoView({behavior:"smooth"});
+  startEffects();
+});
+
+/* MUSIC PLAYER */
+let audioContext=null;
+let activeOscillators=[];
+let musicTimer=null;
+let musicPlaying=false;
+let musicIndex=0;
+
+const happyNotes=[
+  [392,.3],[392,.3],[440,.6],[392,.6],[523,.6],[494,1],
+  [392,.3],[392,.3],[440,.6],[392,.6],[587,.6],[523,1]
+];
+
+const romanticNotes=[
+  [261.63,.5],[329.63,.5],[392,.5],[329.63,.5],
+  [293.66,.5],[349.23,.5],[392,.5],[440,.5],
+  [392,.5],[329.63,.5],[261.63,1]
+];
+
+function playTone(frequency,duration){
+  if(!audioContext)return;
+  const oscillator=audioContext.createOscillator();
+  const gain=audioContext.createGain();
+  oscillator.type="sine";
+  oscillator.frequency.value=frequency;
+  gain.gain.setValueAtTime(.0001,audioContext.currentTime);
+  gain.gain.exponentialRampToValueAtTime(.15,audioContext.currentTime+.03);
+  gain.gain.exponentialRampToValueAtTime(.0001,audioContext.currentTime+duration);
+  oscillator.connect(gain);
+  gain.connect(audioContext.destination);
+  oscillator.start();
+  oscillator.stop(audioContext.currentTime+duration);
+  activeOscillators.push(oscillator);
+}
+
+function stopMusic(){
+  clearInterval(musicTimer);
+  musicPlaying=false;
+  activeOscillators.forEach(o=>{try{o.stop()}catch(e){}});
+  activeOscillators=[];
+}
+
+function playMusic(){
+  const choice=document.getElementById("music-choice").value;
+  if(choice==="arijit"){
+    stopMusic();
+    document.getElementById("music-status").textContent="Opening Arijit Singh music search...";
+    window.open("https://www.youtube.com/results?search_query=Arijit+Singh+romantic+songs","_blank");
+    return;
+  }
+  if(!audioContext){
+    const AudioContextClass=window.AudioContext||window.webkitAudioContext;
+    if(!AudioContextClass){
+      document.getElementById("music-status").textContent="Your browser does not support generated music.";
+      return;
+    }
+    audioContext=new AudioContextClass();
+  }
+  stopMusic();
+  if(audioContext.state==="suspended")audioContext.resume();
+  const notes=choice==="happy"?happyNotes:romanticNotes;
+  musicIndex=0;
+  musicPlaying=true;
+  document.getElementById("music-status").textContent=choice==="happy"?"Playing Happy Birthday melody!":"Playing romantic instrumental melody!";
+  function nextNote(){
+    if(!musicPlaying)return;
+    const note=notes[musicIndex];
+    playTone(note[0],note[1]);
+    musicIndex=(musicIndex+1)%notes.length;
+  }
+  nextNote();
+  musicTimer=setInterval(nextNote,600);
+}
+
+document.getElementById("play").addEventListener("click",playMusic);
+document.getElementById("pause").addEventListener("click",()=>{
+  stopMusic();
+  document.getElementById("music-status").textContent="Music paused.";
+});
+
+/* COUNTDOWN */
+const dateInput=document.getElementById("birthday-date");
+
+function updateCountdown(){
+  if(!dateInput.value)return;
+  const now=new Date();
+  const parts=dateInput.value.split("-").map(Number);
+  let target=new Date(parts[0],parts[1]-1,parts[2]);
+  if(target<new Date(now.getFullYear(),now.getMonth(),now.getDate())){
+    target=new Date(now.getFullYear()+1,parts[1]-1,parts[2]);
+  }
+  const diff=target.getTime()-now.getTime();
+  const day=Math.floor(diff/86400000);
+  const hour=Math.floor(diff%86400000/3600000);
+  const minute=Math.floor(diff%3600000/60000);
+  const second=Math.floor(diff%60000/1000);
+  document.getElementById("days").textContent=String(day).padStart(2,"0");
+  document.getElementById("hours").textContent=String(hour).padStart(2,"0");
+  document.getElementById("minutes").textContent=String(minute).padStart(2,"0");
+  document.getElementById("seconds").textContent=String(second).padStart(2,"0");
+  document.getElementById("countdown-message").textContent="Your special day is getting closer!";
+}
+dateInput.addEventListener("change",updateCountdown);
+setInterval(updateCountdown,1000);
+
+/* CANDLE LIGHTING */
+let candlesLit=false;
+document.getElementById("light").addEventListener("click",()=>{
+  document.querySelectorAll(".flame").forEach(f=>f.classList.add("on"));
+  candlesLit=true;
+  document.getElementById("cake-status").textContent="The candles are glowing! Make a beautiful wish.";
+});
+
+/* CAKE CUTTING */
+let cakeCut=false;
+document.getElementById("cut").addEventListener("click",()=>{
+  if(!candlesLit){
+    document.getElementById("cake-status").textContent="First, light the candles!";
+    return;
+  }
+  if(cakeCut)return;
+  cakeCut=true;
+  document.getElementById("cake").classList.add("cut");
+  document.getElementById("cake-slice").style.display="block";
+  document.getElementById("cake-status").textContent="Cake cutting time! Happy Birthday Samina!";
+  document.querySelectorAll(".flame").forEach(f=>f.classList.remove("on"));
+  celebrate();
+});
+
+/* PHOTO GALLERY */
+document.getElementById("photo-input").addEventListener("change",event=>{
+  const files=Array.from(event.target.files);
+  const gallery=document.getElementById("photo-gallery");
+  files.forEach(file=>{
+    if(!file.type.startsWith("image/"))return;
+    const url=URL.createObjectURL(file);
+    const item=document.createElement("div");
+    item.className="photo";
+    const img=document.createElement("img");
+    img.src=url;
+    img.alt="Birthday memory";
+    item.appendChild(img);
+    gallery.appendChild(item);
+  });
+});
+
+/* QUIZ */
+const questions=[
+  {q:"What is today's celebration?",a:["Birthday","Wedding","Festival"],correct:0},
+  {q:"Who is the birthday star?",a:["Samina","Someone else","A friend"],correct:0},
+  {q:"What should Samina always do?",a:["Keep smiling","Stop dreaming","Forget happiness"],correct:0}
+];
+
+let quizIndex=0;
+let quizScore=0;
+
+function showQuestion(){
+  const q=questions[quizIndex];
+  document.getElementById("question").textContent="Question "+(quizIndex+1)+": "+q.q;
+  const options=document.getElementById("quiz-options");
+  options.innerHTML="";
+  q.a.forEach((answer,index)=>{
+    const button=document.createElement("button");
+    button.className="quiz-option";
+    button.textContent=answer;
+    button.addEventListener("click",()=>{
+      if(index===q.correct)quizScore++;
+      quizIndex++;
+      if(quizIndex<questions.length){
+        showQuestion();
+      }else{
+        document.getElementById("question").textContent="Quiz completed!";
+        options.innerHTML="";
+        document.getElementById("quiz-result").textContent="Your score: "+quizScore+"/"+questions.length+". Happy Birthday!";
+        document.getElementById("start-quiz").textContent="Play Again";
+      }
+    });
+    options.appendChild(button);
+  });
+}
+
+document.getElementById("start-quiz").addEventListener("click",()=>{
+  quizIndex=0;
+  quizScore=0;
+  document.getElementById("quiz-result").textContent="";
+  showQuestion();
+});
+
+/* VIRTUAL GIFT */
+document.getElementById("open-gift").addEventListener("click",()=>{
+  document.getElementById("gift-box").textContent="💝";
+  document.getElementById("gift-message").classList.add("visible");
+  celebrate();
+});
+
+/* SECRET MESSAGE */
+document.getElementById("unlock-secret").addEventListener("click",()=>{
+  document.getElementById("secret-message").classList.add("visible");
+  document.getElementById("unlock-secret").textContent="Message Unlocked!";
+});
+
+/* RANDOM WISHES */
+const wishes=[
+  "Tumhari duniya khushiyon se roshan rahe!",
+  "May all your dreams come true!",
+  "Hamesha khush raho aur muskurati raho!",
+  "May every day bring you something beautiful!",
+  "Tumhari life success aur happiness se bhari rahe!",
+  "Keep shining like a star, Samina!"
+];
+
+document.getElementById("new-wish").addEventListener("click",()=>{
+  const random=wishes[Math.floor(Math.random()*wishes.length)];
+  document.getElementById("wish").textContent=random;
+});
+
+/* FALLING HEARTS AND BALLOONS */
+let effectsStarted=false;
+
+function startEffects(){
+  if(effectsStarted)return;
+  effectsStarted=true;
+  setInterval(()=>{
+    const particle=document.createElement("div");
+    particle.className="particle";
+    particle.textContent=["♥","✦","♥","✧","✿","★"][Math.floor(Math.random()*6)];
+    particle.style.left=Math.random()*100+"vw";
+    particle.style.animationDuration=(4+Math.random()*5)+"s";
+    particle.style.color=["#f7d58a","#f5a8c7","#fff"][Math.floor(Math.random()*3)];
+    document.getElementById("effects").appendChild(particle);
+    setTimeout(()=>particle.remove(),10000);
+  },350);
+
+  setInterval(()=>{
+    const balloon=document.createElement("div");
+    balloon.className="bubble";
+    balloon.textContent="🎈";
+    balloon.style.left=Math.random()*95+"vw";
+    document.body.appendChild(balloon);
+    setTimeout(()=>balloon.remove(),10000);
+  },1800);
+}
+
+/* FIREWORKS */
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+
+function resizeCanvas(){
+  canvas.width=window.innerWidth;
+  canvas.height=window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize",resizeCanvas);
+
+let particles=[];
+
+function burst(x,y){
+  for(let i=0;i<55;i++){
+    const angle=Math.random()*Math.PI*2;
+    const speed=1+Math.random()*5;
+    particles.push({
+      x,y,
+      vx:Math.cos(angle)*speed,
+      vy:Math.sin(angle)*speed,
+      life:80,
+      color:["#ffd166","#ff77aa","#ffffff","#e7a6ff"][Math.floor(Math.random()*4)]
+    });
+  }
+}
+
+function animateFireworks(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach((p,index)=>{
+    p.x+=p.vx;
+    p.y+=p.vy;
+    p.vy+=.025;
+    p.life--;
+    ctx.globalAlpha=Math.max(0,p.life/80);
+    ctx.fillStyle=p.color;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,2.5,0,Math.PI*2);
+    ctx.fill();
+    if(p.life<=0)particles.splice(index,1);
+  });
+  ctx.globalAlpha=1;
+  requestAnimationFrame(animateFireworks);
+}
+animateFireworks();
+
+function celebrate(){
+  for(let i=0;i<5;i++){
+    setTimeout(()=>burst(Math.random()*canvas.width,Math.random()*canvas.height*.6),i*250);
+  }
+  for(let i=0;i<20;i++){
+    const confetti=document.createElement("div");
+    confetti.className="particle";
+    confetti.textContent=["✦","♥","★","✿"][Math.floor(Math.random()*4)];
+    confetti.style.left=Math.random()*100+"vw";
+    confetti.style.animationDuration=(3+Math.random()*3)+"s";
+    document.getElementById("effects").appendChild(confetti);
+    setTimeout(()=>confetti.remove(),7000);
+  }
+}
+
+/* GRAND FINALE */
+document.getElementById("celebrate-again").addEventListener("click",()=>{
+  celebrate();
+  document.getElementById("grand-finale").scrollIntoView({behavior:"smooth"});
+});
+</script>
+</body>
+</html>
